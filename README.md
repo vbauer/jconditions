@@ -3,8 +3,8 @@
 
 > There is an exception to every rule.
 
-**JConditions** is an extension for [JUnit](http://junit.org) framework, which allows to mark test methods with some specific conditional annotations.
-It helps to keep clean your test method's code and prevents a lot of unnecessary code (with [Assume](http://junit.sourceforge.net/javadoc/org/junit/Assume.html) class).
+**JConditions** is an extension for [JUnit](http://junit.org) framework, which allows to mark test methods with specific conditional annotations.
+It helps to keep clean your test methods and prevents a lot of unnecessary code (with [Assume](http://junit.sourceforge.net/javadoc/org/junit/Assume.html) class).
 
 
 ## 10 second example
@@ -193,12 +193,111 @@ public void testIfScriptNegative() {
 ```
 
 ### @IgnoreIf
+**@IgnoreIf** allows to skip some test method using specific `ConditionalChecker` class.
+It will skip test, if checker return true and execute method otherwise.
+`ConditionalChecker` could be separate class, or nested static class, or even inner class.
+It also works fine with private classes.
+
+```java
+@Test
+@IgnoreIf(Always.class)
+public void testIgnoreIfAlways() {
+    Assert.fail();
+}
+```
+
 ### @PropertyIsDefined
+
+**@PropertyIsDefined** checks if environment or system property is defined.
+ It could be useful to simulate test profiles or to check some cases which are dependent on them (and could be optionals).
+
+```java
+@Test
+@PropertyIsDefined(keys = "os.name")
+public void testEnvVarIsDefined() {
+    Assert.assertNotNull(PropUtils.getSystemProperty("os.name"));
+}
+```
+
 ### @ResourceIsAvailable
+
+**@ResourceIsAvailable** allows to minimize code which is necessary to download some document/file via HTTP/HTTPS.
+It is also possible to cache downloaded resource between test executions, otherwise it will be remove after test.
+
+Available parameters:
+
+* **source** - HTTP/HTTPS file or document.
+* **target** - path to file where content should be saved.
+* **cache** - flag to configure cache option.
+
+```java
+@Test
+@ResourceIsAvailable(
+    source = "http://apple.com",
+    target = "${java.io.tmpdir}/apple-homepage.html",
+    cache = false
+)
+public void testResourceIsAvailable() {
+    final String path = PropUtils.injectProperties("${java.io.tmpdir}/apple-homepage.html");
+    Assert.assertTrue(FSUtils.fileExists(path));
+}
+```
+
 ### @RunIf
+
+**@RunIf** is an opposite annotation to **@IgnoreIf**. It will run test method if `ConditionalChecker` returns `true`.
+
+```java
+@Test
+@RunIf(SomeInnerClassCheck.class)
+public void testInnerClass() {
+    Assert.fail();
+}
+```
+
 ### @RunningOnOS
+**@RunningOnOS** checks the use operation system and runs test method when it is specified and `value` parameter.
+It is also possible to configure multiple variants (to run test method, even one of them should be fine).
+
+```java
+@Test
+@RunningOnOS({
+    RunningOnOS.LINUX,
+    RunningOnOS.MAC,
+})
+public void testRunningOnOS() throws Exception {
+    Assert.assertTrue(exec("ls"));
+}
+```
+
 ### @SocketIsOpened
+**@SocketIsOpened** check that specified socket is opened.
+
+Available parameters:
+
+* **host** - host address (default value is "0.0.0.0").
+* **port** - socket's port.
+
+```java
+@Test
+@SocketIsOpened(host = "apple.com", port = 80)
+public void testSocketIsOpened() throws Exception {
+    checkSite("http://apple.com");
+}
+```
+
 ### @UrlIsReachable
+
+**@UrlIsReachable** checks that specified URL address is reachable (it is available via `URLConnection`).
+It also possible to configure multiple URLs.
+
+```java
+@Test
+@UrlIsReachable("http://apple.com")
+public void testUrlIsReachable() throws Exception {
+    checkSite("http://apple.com");
+}
+```
 
 
 ## Building from source
