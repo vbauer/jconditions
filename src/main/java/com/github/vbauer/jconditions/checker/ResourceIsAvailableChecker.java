@@ -26,7 +26,7 @@ public class ResourceIsAvailableChecker implements ConditionChecker<ResourceIsAv
         final int timeout = annotation.timeout();
         final boolean cache = annotation.cache();
 
-        if (!FSUtils.fileExists(target) || (!cache && FSUtils.deleteFile(target))) {
+        if (!FSUtils.fileExists(target) || !cache && FSUtils.deleteFile(target)) {
             final URLConnection urlConnection = InOutUtils.connectURL(source, timeout);
             final File file = InOutUtils.copyURLContentToFile(urlConnection, target);
             if (!cache) {

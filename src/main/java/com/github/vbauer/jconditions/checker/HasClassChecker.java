@@ -18,14 +18,22 @@ public class HasClassChecker implements ConditionChecker<HasClass> {
     }
 
 
-    private boolean hasAllClasses(final String... classNames) throws Exception {
+    private boolean hasAllClasses(final String... classNames) {
         for (final String className : classNames) {
-            final boolean hasClass = Class.forName(className) != null;
+            final boolean hasClass = hasClass(className);
             if (!hasClass) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean hasClass(final String className) {
+        try {
+            return Class.forName(className) != null;
+        } catch (final Exception ex) {
+            return false;
+        }
     }
 
 }

@@ -12,7 +12,8 @@ import java.lang.annotation.Annotation;
  * @author Vladislav Bauer
  */
 
-public class ConditionIgnoreRule implements MethodRule {
+public class ConditionRule
+        implements MethodRule {
 
     @Override
     public Statement apply(
@@ -20,7 +21,7 @@ public class ConditionIgnoreRule implements MethodRule {
     ) {
         final Annotation[] annotations = method.getAnnotations();
         final ConditionChecker checker =
-            ConditionCheckerEngine.detectChecker(target, annotations);
+            ConditionCheckerEngine.detectFailedChecker(target, annotations);
 
         if (checker != null) {
             return new IgnoreStatement(checker);

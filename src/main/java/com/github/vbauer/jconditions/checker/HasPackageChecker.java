@@ -18,7 +18,7 @@ public class HasPackageChecker implements ConditionChecker<HasPackage> {
     }
 
 
-    private boolean hasAllPackages(final String... packageNames) throws Exception {
+    private boolean hasAllPackages(final String... packageNames) {
         for (final String packageName : packageNames) {
             final boolean hasPackage = Package.getPackage(packageName) != null;
             if (!hasPackage) {

@@ -18,11 +18,12 @@ public final class InOutUtils {
     }
 
 
-    public static void closeQuietly(final Closeable closeable) {
+    public static boolean closeQuietly(final Closeable closeable) {
         try {
             closeable.close();
+            return true;
         } catch (final Exception ex) {
-            // Ignored
+            return false;
         }
     }
 

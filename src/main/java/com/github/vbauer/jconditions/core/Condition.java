@@ -1,7 +1,5 @@
 package com.github.vbauer.jconditions.core;
 
-import com.github.vbauer.jconditions.core.ConditionChecker;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

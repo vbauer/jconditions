@@ -12,7 +12,7 @@ public final class TextUtils {
 
 
     public static boolean equalsSafe(final String a, final String b) {
-        return (a == null && b == null) || (a != null && a.equals(b));
+        return a == null && b == null || a != null && a.equals(b);
     }
 
     public static boolean containsIgnoreCase(final String a, final String b) {

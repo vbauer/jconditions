@@ -23,7 +23,7 @@ public class ConditionTestRunner extends BlockJUnit4ClassRunner {
     }
 
     @Override
-    protected void runChild(final FrameworkMethod method, RunNotifier notifier) {
+    protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
         final Description description = describeChild(method);
         if (isIgnored(method)) {
             notifier.fireTestIgnored(description);
@@ -33,7 +33,7 @@ public class ConditionTestRunner extends BlockJUnit4ClassRunner {
 
             final Annotation[] annotations = method.getAnnotations();
             final ConditionChecker checker =
-                ConditionCheckerEngine.detectChecker(test, annotations);
+                ConditionCheckerEngine.detectFailedChecker(test, annotations);
 
             if (checker != null) {
                 notifier.fireTestIgnored(description);

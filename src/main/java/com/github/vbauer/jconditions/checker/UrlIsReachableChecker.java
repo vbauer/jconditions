@@ -24,12 +24,19 @@ public class UrlIsReachableChecker implements ConditionChecker<UrlIsReachable> {
     private boolean isReachable(final String[] urlAddresses, final int timeout) throws Exception {
         for (final String urlAddress : urlAddresses) {
             final String url = PropUtils.injectProperties(urlAddress);
-            final boolean reachable = InOutUtils.connectURL(url, timeout) != null;
-            if (!reachable) {
+            if (!isReachable(url, timeout)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean isReachable(final String url, final int timeout) {
+        try {
+            return InOutUtils.connectURL(url, timeout) != null;
+        } catch (final Exception ex) {
+            return false;
+        }
     }
 
 }

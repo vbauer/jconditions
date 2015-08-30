@@ -1,6 +1,7 @@
 package com.github.vbauer.jconditions.core;
 
 /**
+ * @param <T> type of context object
  * @author Vladislav Bauer
  */
 

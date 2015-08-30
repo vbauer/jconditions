@@ -1,4 +1,4 @@
-package com.github.vbauer.jconditions;
+package com.github.vbauer.jconditions.annotation;
 
 import com.github.vbauer.jconditions.core.junit.ConditionTestRunner;
 import org.junit.runner.RunWith;

@@ -29,8 +29,12 @@ public class AppIsInstalledChecker implements ConditionChecker<AppIsInstalled> {
         return true;
     }
 
-    private boolean isAppInstalled(final String application) throws Exception {
-        return Runtime.getRuntime().exec(application) != null;
+    private boolean isAppInstalled(final String application) {
+        try {
+            return Runtime.getRuntime().exec(application) != null;
+        } catch (final Exception ex) {
+            return false;
+        }
     }
 
 }

@@ -20,9 +20,9 @@ public class PropertyIsDefinedChecker implements ConditionChecker<PropertyIsDefi
 
         int index = 0;
         for (final String key : keys) {
-            final String variable = PropUtils.getSystemProperty(key);
+            final String variable = PropUtils.getSystemProperty(PropUtils.injectProperties(key));
             try {
-                final String value = values[index];
+                final String value = PropUtils.injectProperties(values[index++]);
                 if (!TextUtils.equalsSafe(variable, value)) {
                     return false;
                 }

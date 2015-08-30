@@ -1,11 +1,12 @@
-package com.github.vbauer.jconditions;
+package com.github.vbauer.jconditions.annotation;
 
-import com.github.vbauer.jconditions.annotation.*;
 import com.github.vbauer.jconditions.checker.IfJavaVersionChecker;
+import com.github.vbauer.jconditions.checker.RunningOnOSChecker;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.misc.Always;
 import com.github.vbauer.jconditions.misc.AppleWorksFine;
+import com.github.vbauer.jconditions.misc.Never;
 import com.github.vbauer.jconditions.util.FSUtils;
 import com.github.vbauer.jconditions.util.PropUtils;
 import org.junit.Assert;
@@ -27,8 +28,14 @@ public abstract class AbstractAnnotationsTest {
 
     @Test
     @IgnoreIf(Always.class)
-    public void testIgnoreIf() {
+    public void testIgnoreIfAlways() {
         Assert.fail();
+    }
+
+    @Test
+    @IgnoreIf(Never.class)
+    public void testIgnoreIfNever() {
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -51,6 +58,12 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
+    @AppIsInstalled({ "fake-app-12345" })
+    public void testAppIsNotInstalled() throws Exception {
+        Assert.fail();
+    }
+
+    @Test
     @ExistsOnFS("pom.xml")
     public void testFileExists() throws Exception {
         Assert.assertTrue(FSUtils.fileExists("pom.xml"));
@@ -63,6 +76,12 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
+    @ExistsOnFS("pom.xml2")
+    public void testFileNotExists() throws Exception {
+        Assert.fail();
+    }
+
+    @Test
     @SocketIsOpened(host = "apple.com", port = 80)
     public void testSocketIsOpened() throws Exception {
         checkSite("http://apple.com");
@@ -72,6 +91,12 @@ public abstract class AbstractAnnotationsTest {
     @UrlIsReachable("http://apple.com")
     public void testUrlIsReachable() throws Exception {
         checkSite("http://apple.com");
+    }
+
+    @Test
+    @UrlIsReachable("http://it-is-a-wrong-url-address.com")
+    public void testUrlIsNotReachable() throws Exception {
+        Assert.fail();
     }
 
     @Test
@@ -96,9 +121,21 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
-    @HasPackage("com.github.vbauer")
+    @HasClass("org.wrong.package.WrongClass")
+    public void testHasClassNegative() throws Exception {
+        Assert.fail();
+    }
+
+    @Test
+    @HasPackage("org.junit")
     public void testHasPackage() throws Exception {
-        Assert.assertNotNull(Package.getPackage("com.github.vbauer"));
+        Assert.assertNotNull(Package.getPackage("org.junit"));
+    }
+
+    @Test
+    @HasPackage("org.wrong.package")
+    public void testHasPackageNegative() throws Exception {
+        Assert.fail();
     }
 
     @Test
@@ -108,14 +145,38 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
+    @PropertyIsDefined(keys = "os.name", values = "Linux")
+    public void testEnvVarIsNotDefined() {
+        Assert.assertTrue(RunningOnOSChecker.currentOS().contains("linux"));
+    }
+
+    @Test
     @AppleWorksFine
     public void testCustomAnnotation() throws Exception {
         checkSite("http://apple.com");
     }
 
     @Test
-    @IfScript("test.isSatisfiedInnerCheck")
+    @IfScript("true")
     public void testIfScript() {
+        Assert.assertTrue(true);
+    }
+
+    @Test
+    @IfScript("test.isSatisfiedInnerCheck")
+    public void testIfScriptNegative() {
+        Assert.fail();
+    }
+
+    @Test
+    @IfScript(value = "0", engine = "application/javascript")
+    public void testIfScriptMimeType() {
+        Assert.fail();
+    }
+
+    @Test
+    @IfScript(value = "true", engine = "unknown")
+    public void testIfScriptWrongEngine() {
         Assert.fail();
     }
 
@@ -140,7 +201,7 @@ public abstract class AbstractAnnotationsTest {
     @IfJavaVersion(IfJavaVersion.JAVA_8)
     public void testIfJavaVersion8() {
         Assert.assertTrue(IfJavaVersionChecker.javaVersion().contains("8"));
-        Assert.assertNotNull(play.Logger.of(AbstractAnnotationsTest.class));
+        Assert.assertNotNull(javaslang.Tuple0.instance());
     }
 
     private void checkSite(final String urlAddress) throws Exception {

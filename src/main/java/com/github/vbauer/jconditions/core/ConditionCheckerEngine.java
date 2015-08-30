@@ -15,13 +15,14 @@ public final class ConditionCheckerEngine {
     }
 
 
-    public static ConditionChecker detectChecker(
+    public static ConditionChecker detectFailedChecker(
         final Object instance, final Annotation... annotations
     ) {
-        return findChecker(instance, null, annotations);
+        return findCheckerByAnnotations(instance, null, annotations);
     }
 
-    private static ConditionChecker findChecker(
+
+    private static ConditionChecker findCheckerByAnnotations(
         final Object instance, final Annotation parent, final Annotation... annotations
     ) {
         for (final Annotation annotation : annotations) {
@@ -29,14 +30,14 @@ public final class ConditionCheckerEngine {
                 final Class<? extends Annotation> annotationType = annotation.annotationType();
                 if (annotationType == Condition.class) {
                     final Condition condition = (Condition) annotation;
-                    final ConditionChecker checker = findChecker(instance, parent, condition);
+                    final ConditionChecker checker = findCheckerByCondition(instance, parent, condition);
                     if (checker != null) {
                         return checker;
                     }
                 }
 
                 final Annotation[] extra = annotationType.getAnnotations();
-                final ConditionChecker checker = findChecker(instance, annotation, extra);
+                final ConditionChecker checker = findCheckerByAnnotations(instance, annotation, extra);
                 if (checker != null) {
                     return checker;
                 }
@@ -46,7 +47,7 @@ public final class ConditionCheckerEngine {
     }
 
     @SuppressWarnings("unchecked")
-    private static ConditionChecker findChecker(
+    private static ConditionChecker findCheckerByCondition(
         final Object instance, final Annotation parent, final Condition condition
     ) {
         final Class<? extends ConditionChecker> checkerClass = condition.value();

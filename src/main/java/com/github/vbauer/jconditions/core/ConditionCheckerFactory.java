@@ -50,9 +50,8 @@ public final class ConditionCheckerFactory {
         final Object instance, final Class<? extends ConditionChecker> conditionClass
     ) throws Exception {
         final Class<?> clazz = conditionClass.getDeclaringClass();
-        final Class<?>[] parameterTypes = { clazz };
         final Constructor<? extends ConditionChecker> constructor =
-            conditionClass.getDeclaredConstructor(parameterTypes);
+            conditionClass.getDeclaredConstructor(clazz);
         return ReflexUtils.makeAccessible(constructor).newInstance(instance);
     }
 
