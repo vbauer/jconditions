@@ -3,6 +3,7 @@ package com.github.vbauer.jconditions.checker;
 import com.github.vbauer.jconditions.annotation.IfScript;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
+import com.github.vbauer.jconditions.util.PropUtils;
 import com.github.vbauer.jconditions.util.ScriptUtils;
 
 import javax.script.ScriptContext;
@@ -58,10 +59,13 @@ public class IfScriptChecker implements ConditionChecker<IfScript> {
 
     private ScriptContext createScriptContext(final Object testInstance) {
         final ScriptContext context = new SimpleScriptContext();
-        ScriptUtils.addAttribute(context, CONTEXT_ENV, System.getenv());
-        ScriptUtils.addAttribute(context, CONTEXT_PROPS, System.getProperties());
-        ScriptUtils.addAttribute(context, CONTEXT_CONSOLE, System.console());
         ScriptUtils.addAttribute(context, CONTEXT_TEST, testInstance);
+        ScriptUtils.addAttribute(context, CONTEXT_CONSOLE, System.console());
+        ScriptUtils.addAttribute(context, CONTEXT_ENV, System.getenv());
+        ScriptUtils.addAttribute(
+            context, CONTEXT_PROPS,
+            PropUtils.convertPropertiesToMap(System.getProperties())
+        );
         return context;
     }
 

@@ -31,7 +31,7 @@ public final class PropUtils {
         return result;
     }
 
-    private static Map<String, String> convertPropertiesToMap(final Properties properties) {
+    public static Map<String, String> convertPropertiesToMap(final Properties properties) {
         final Map<String, String> result = new HashMap<String, String>();
         for (final String name : properties.stringPropertyNames()) {
             result.put(name, properties.getProperty(name));
