@@ -151,7 +151,7 @@ public void testHasPackage() throws Exception {
 ```
 
 ### @IfJavaVersion
-**@IfJavaVersion** checks that test is run on the specific version of JVM.
+**@IfJavaVersion** checks that test is run on the specific version(s) of JVM.
 
 **EX:** Some features could use external libraries and work only for the specific version of JVM.
 It is possible to check it, if you use full names for classes (class loader will load them in runtime).
@@ -168,7 +168,7 @@ public void testIfJavaVersion8() {
 
 ### @IfScript
 
-**@IfScript** allows to write custom conditional rules using [JSR223: JSR 223: Scripting for the JavaTM Platform](https://www.jcp.org/en/jsr/detail?id=223).
+**@IfScript** allows to write custom conditional rules using [JSR 223: Scripting for the JavaTM Platform](https://www.jcp.org/en/jsr/detail?id=223).
 JavaScript engine is available by default (it is part of JVM).
 All other JSR233-compatible languages will be included automatically if they are available in classpath.
 
@@ -193,9 +193,9 @@ public void testIfScriptNegative() {
 ```
 
 ### @IgnoreIf
-**@IgnoreIf** allows to skip some test method using specific `ConditionalChecker` class.
+**@IgnoreIf** allows to skip some test method using specific `ConditionChecker` class.
 It will skip test, if checker return true and execute method otherwise.
-`ConditionalChecker` could be separate class, or nested static class, or even inner class.
+`ConditionChecker` could be separate class, or nested static class, or even inner class.
 It also works fine with private classes.
 
 ```java
@@ -210,6 +210,11 @@ public void testIgnoreIfAlways() {
 
 **@PropertyIsDefined** checks if environment or system property is defined.
  It could be useful to simulate test profiles or to check some cases which are dependent on them (and could be optionals).
+ 
+ Available parameters:
+ 
+ * **keys** - keys of environment or system variables
+ * **values** - values that should correspond to keys (optional parameter).
 
 ```java
 @Test
@@ -229,6 +234,7 @@ Available parameters:
 * **source** - HTTP/HTTPS file or document.
 * **target** - path to file where content should be saved.
 * **cache** - flag to configure cache option.
+* **timeout** - maximum time for connection to the `source` (default value is 10sec).
 
 ```java
 @Test
@@ -245,7 +251,7 @@ public void testResourceIsAvailable() {
 
 ### @RunIf
 
-**@RunIf** is an opposite annotation to **@IgnoreIf**. It will run test method if `ConditionalChecker` returns `true`.
+**@RunIf** is an opposite annotation to **@IgnoreIf**. It will run test method if `ConditionChecker` returns `true`.
 
 ```java
 @Test
@@ -256,7 +262,7 @@ public void testInnerClass() {
 ```
 
 ### @RunningOnOS
-**@RunningOnOS** checks the use operation system and runs test method when it is specified and `value` parameter.
+**@RunningOnOS** checks the current operation system and runs test method only when it is specified and `value` parameter.
 It is also possible to configure multiple variants (to run test method, even one of them should be fine).
 
 ```java
@@ -271,12 +277,13 @@ public void testRunningOnOS() throws Exception {
 ```
 
 ### @SocketIsOpened
-**@SocketIsOpened** check that specified socket is opened.
+**@SocketIsOpened** checks that specified socket is opened.
 
 Available parameters:
 
 * **host** - host address (default value is "0.0.0.0").
-* **port** - socket's port.
+* **port** - socket's port number.
+* **timeout** - maximum time for connection to the socket (default value is 10sec).
 
 ```java
 @Test
@@ -288,8 +295,13 @@ public void testSocketIsOpened() throws Exception {
 
 ### @UrlIsReachable
 
-**@UrlIsReachable** checks that specified URL address is reachable (it is available via `URLConnection`).
+**@UrlIsReachable** checks that specified URL address is reachable (available via `URLConnection`).
 It also possible to configure multiple URLs.
+
+Available parameters:
+
+* **value** - URL address(s) that should be checked.
+* **timeout** - maximum timeout for URL connection (default value is 10sec).
 
 ```java
 @Test
