@@ -1,7 +1,31 @@
 
-# JConditions
+# JConditions [![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions) [![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master) [![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
 
-TODO: fill readme document
+> There is an exception to every rule.
+
+**JConditions** is an extension for [JUnit](http://junit.org) framework, which allows to mark test methods with some specific conditional annotations.
+It helps to keep clean your test method's code and prevents a lot of unnecessary code (with [Assume](http://junit.sourceforge.net/javadoc/org/junit/Assume.html) class).
+
+
+## Features
+
+**JConditions** has the following conditional annotations:
+
+<ul>
+    <li><a href="#appisinstalled">@AppIsInstalled</a></li>
+    <li><a href="#existsonfs">@ExistsOnFS</a></li>
+    <li><a href="#hasclass">@HasClass</a></li>
+    <li><a href="#haspackage">@HasPackage</a></li>
+    <li><a href="#ifjavaversion">@IfJavaVersion</a></li>
+    <li><a href="#ifscript">@IfScript</a></li>
+    <li><a href="#ignoreif">@IgnoreIf</a></li>
+    <li><a href="#propertyisdefined">@PropertyIsDefined</a></li>
+    <li><a href="#resourceisavailable">@ResourceIsAvailable</a></li>
+    <li><a href="#runif">@RunIf</a></li>
+    <li><a href="#runningonos">@RunningOnOS</a></li>
+    <li><a href="#socketisopened">@SocketIsOpened</a></li>
+    <li><a href="#urlisreachable">@UrlIsReachable</a></li>
+</ul>
 
 
 ## Setup
@@ -40,6 +64,35 @@ dependencies {
     testCompile 'com.github.vbauer:jconditions:1.0.0'
 }
 ```
+
+
+## Annotations
+
+### @AppIsInstalled
+### @ExistsOnFS
+### @HasClass
+### @HasPackage
+### @IfJavaVersion
+### @IfScript
+### @IgnoreIf
+### @PropertyIsDefined
+### @ResourceIsAvailable
+### @RunIf
+### @RunningOnOS
+### @SocketIsOpened
+### @UrlIsReachable
+
+
+## Building from source
+
+JConditions uses Maven for its build. To build project, run:
+
+```bash
+mvn clean install -P strict
+```
+
+from the root of the project directory.
+Profile `strict` is necessary to check code style and to run static code analysis.
 
 
 ## Might also like
