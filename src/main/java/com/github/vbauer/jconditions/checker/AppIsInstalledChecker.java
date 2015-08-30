@@ -1,0 +1,36 @@
+package com.github.vbauer.jconditions.checker;
+
+import com.github.vbauer.jconditions.annotation.AppIsInstalled;
+import com.github.vbauer.jconditions.core.CheckerContext;
+import com.github.vbauer.jconditions.core.ConditionChecker;
+import com.github.vbauer.jconditions.util.PropUtils;
+
+/**
+ * @author Vladislav Bauer
+ */
+
+public class AppIsInstalledChecker implements ConditionChecker<AppIsInstalled> {
+
+    @Override
+    public boolean isSatisfied(final CheckerContext<AppIsInstalled> context) throws Exception {
+        final AppIsInstalled annotation = context.getAnnotation();
+        final String[] applications = annotation.value();
+        return appsInstalled(applications);
+    }
+
+
+    private boolean appsInstalled(final String... applications) throws Exception {
+        for (final String application : applications) {
+            final String app = PropUtils.injectProperties(application);
+            if (!isAppInstalled(app)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isAppInstalled(final String application) throws Exception {
+        return Runtime.getRuntime().exec(application) != null;
+    }
+
+}
