@@ -1,5 +1,5 @@
 
-# JConditions [![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions) [![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master) [![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
+# JConditions [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JConditions-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2414) [![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions) [![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master) [![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
 
 > There is an exception to every rule.
 
