@@ -48,6 +48,8 @@ public class ExampleTest {
     <li><a href="#urlisreachable">@UrlIsReachable</a></li>
 </ul>
 
+This annotations could be used with test methods or/and classes (it will allow to run checks before each test method).
+You can also write custom annotations or make composite annotations. 
 
 ## Setup
 
@@ -310,6 +312,38 @@ public void testUrlIsReachable() throws Exception {
     checkSite("http://apple.com");
 }
 ```
+
+
+## Custom annotations
+It is possible use `@IfRun` or `@IgnoreIf` to run custom `ConditionalChecker`,
+but it is also possible to write your own annotation (like `@HasPackage` or `@IfScript`).
+
+All JConditions out-of-box annotations was created using unified extension mechanism.
+This mechanism is centered around 3 main things:
+
+* Custom annotation which can has additional parameters that could be used as input data.
+* Conditional checker which make decision to permit or restrict running of test method.
+* `@Condition` annotation which allows to glue custom annotation and conditional checker.
+
+Let's write annotation which emulates standard JUnit's `@org.junit.Ignore`:
+
+```java
+@Condition(IgnoreItChecker.class)
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+public @interface IgnoreIt {
+}
+
+public class IgnoreItChecker implements ConditionChecker<IgnoreIt> {
+    @Override
+    public boolean isSatisfied(final CheckerContext context) {
+        return false;
+    }
+
+}
+```
+
+That's all! Now, you can mark test classes or test methods with `@IgnoreIt` to skip test(s).
 
 
 ## Building from source
