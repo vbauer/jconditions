@@ -30,27 +30,39 @@ public final class ConditionCheckerEngine {
         final Object instance, final Annotation parent, final Collection<Annotation> annotations
     ) {
         for (final Annotation annotation : annotations) {
-            if (!ReflexUtils.isInJavaLangAnnotationPackage(annotation)) {
-                final Class<? extends Annotation> annotationType = annotation.annotationType();
+            final ConditionChecker checker =
+                getConditionChecker(instance, parent, annotation);
 
-                if (annotationType == Condition.class) {
-                    final Condition condition = (Condition) annotation;
-                    final ConditionChecker checker =
-                        findCheckerByCondition(instance, parent, condition);
-                    if (checker != null) {
-                        return checker;
-                    }
-                }
+            if (checker != null) {
+                return checker;
+            }
+        }
+        return null;
+    }
 
-                final Collection<Annotation> extra =
-                    Arrays.asList(annotationType.getAnnotations());
+    private static ConditionChecker getConditionChecker(
+        final Object instance, final Annotation parent, final Annotation annotation
+    ) {
+        if (!ReflexUtils.isInJavaLangAnnotationPackage(annotation)) {
+            final Class<? extends Annotation> annotationType = annotation.annotationType();
 
+            if (annotationType == Condition.class) {
+                final Condition condition = (Condition) annotation;
                 final ConditionChecker checker =
-                    findCheckerByAnnotations(instance, annotation, extra);
-
+                    findCheckerByCondition(instance, parent, condition);
                 if (checker != null) {
                     return checker;
                 }
+            }
+
+            final Collection<Annotation> extra =
+                Arrays.asList(annotationType.getAnnotations());
+
+            final ConditionChecker checker =
+                findCheckerByAnnotations(instance, annotation, extra);
+
+            if (checker != null) {
+                return checker;
             }
         }
         return null;

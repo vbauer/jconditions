@@ -6,6 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Condition is the core feature of JConditions extension mechanism.
+ * All other conditional annotations could be built on top of this annotation.
+ *
+ * It allows to specify checker that should be run before execution of test method.
+ * This checker permits or restricts to run test.
+ *
+ * See an example here: {@link com.github.vbauer.jconditions.annotation.HasClass}
+ *
  * @author Vladislav Bauer
  */
 
@@ -13,6 +21,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Condition {
 
-  Class<? extends ConditionChecker> value();
+    /**
+     * Conditional checker class that will be instantiated and run before test.
+     * @return conditional checker class
+     */
+    Class<? extends ConditionChecker> value();
 
 }
