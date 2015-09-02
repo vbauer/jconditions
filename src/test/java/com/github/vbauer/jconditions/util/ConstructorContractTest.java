@@ -14,28 +14,21 @@ public class ConstructorContractTest {
 
     @Test
     public void testConstructors() {
-        checkClasses(
-            ConditionCheckerEngine.class,
-            ConditionCheckerExecutor.class,
-            ConditionCheckerFactory.class,
-            FSUtils.class,
-            InOutUtils.class,
-            NetUtils.class,
-            PropUtils.class,
-            ReflexUtils.class,
-            ScriptUtils.class,
-            TextUtils.class
-        );
-    }
-
-
-    private void checkClasses(final Class<?>... classes) {
-        for (final Class<?> clazz : classes) {
-            PrivateConstructorChecker
-                .forClass(clazz)
-                .expectedTypeOfException(UnsupportedOperationException.class)
-                .check();
-        }
+        PrivateConstructorChecker
+            .forClasses(
+                ConditionCheckerEngine.class,
+                ConditionCheckerExecutor.class,
+                ConditionCheckerFactory.class,
+                FSUtils.class,
+                InOutUtils.class,
+                NetUtils.class,
+                PropUtils.class,
+                ReflexUtils.class,
+                ScriptUtils.class,
+                TextUtils.class
+            )
+            .expectedTypeOfException(UnsupportedOperationException.class)
+            .check();
     }
 
 }
