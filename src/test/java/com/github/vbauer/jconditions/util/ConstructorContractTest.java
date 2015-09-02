@@ -20,6 +20,7 @@ public class ConstructorContractTest {
             ConditionCheckerFactory.class,
             FSUtils.class,
             InOutUtils.class,
+            NetUtils.class,
             PropUtils.class,
             ReflexUtils.class,
             ScriptUtils.class,

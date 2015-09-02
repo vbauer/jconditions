@@ -5,6 +5,7 @@ import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.util.FSUtils;
 import com.github.vbauer.jconditions.util.InOutUtils;
+import com.github.vbauer.jconditions.util.NetUtils;
 import com.github.vbauer.jconditions.util.PropUtils;
 
 import java.io.File;
@@ -21,7 +22,7 @@ public class ResourceIsAvailableChecker implements ConditionChecker<ResourceIsAv
         final CheckerContext<ResourceIsAvailable> context
     ) throws Exception {
         final ResourceIsAvailable annotation = context.getAnnotation();
-        final String source = PropUtils.injectProperties(annotation.source());
+        final String source = NetUtils.fixScheme(PropUtils.injectProperties(annotation.source()));
         final String target = PropUtils.injectProperties(annotation.target());
         final int timeout = annotation.timeout();
         final boolean cache = annotation.cache();

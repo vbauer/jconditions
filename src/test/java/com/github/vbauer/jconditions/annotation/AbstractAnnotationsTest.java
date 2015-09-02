@@ -187,8 +187,19 @@ public abstract class AbstractAnnotationsTest {
         cache = false
     )
     public void testResourceIsAvailable() {
-        final String path = PropUtils.injectProperties("${java.io.tmpdir}/apple-homepage.html");
-        Assert.assertTrue(FSUtils.fileExists(path));
+        checkTempFile("apple-homepage.html");
+    }
+
+    @Test
+    @ResourceIsAvailable(source = "google.com", target = "${java.io.tmpdir}/google.html")
+    public void testResourceIsAvailableAutoSchema() {
+        checkTempFile("google.html");
+    }
+
+    @Test
+    @ResourceIsAvailable(source = "google.com", target = "${java.io.tmpdir}/google.html")
+    public void testResourceIsAvailableCache() {
+        checkTempFile("google.html");
     }
 
     @Test
@@ -204,6 +215,14 @@ public abstract class AbstractAnnotationsTest {
         Assert.assertNotNull(javaslang.Tuple0.instance());
     }
 
+    @Test
+    @Ignore
+    public void testStandardIgnore() {
+        // Standard @Ignore annotation was broken
+        Assert.fail();
+    }
+
+
     private void checkSite(final String urlAddress) throws Exception {
         final URL url = new URL(urlAddress);
         final URLConnection connection = url.openConnection();
@@ -215,6 +234,11 @@ public abstract class AbstractAnnotationsTest {
         final Runtime runtime = Runtime.getRuntime();
         final Process process = runtime.exec(ls);
         Assert.assertEquals(0, process.waitFor());
+    }
+
+    private void checkTempFile(String filePath) {
+        final String path = PropUtils.injectProperties("${java.io.tmpdir}/" + filePath);
+        Assert.assertTrue(FSUtils.fileExists(path));
     }
 
 
