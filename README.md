@@ -49,7 +49,7 @@ public class ExampleTest {
 </ul>
 
 This annotations could be used with test methods or/and classes (it will allow to run checks before each test method).
-You can also write custom annotations or make composite annotations. 
+You can also write <a href="#custom-annotations">custom annotations</a> or make <a href="#composite-annotations">composite annotations</a>. 
 
 ## Setup
 
@@ -325,7 +325,7 @@ This mechanism is centered around 3 main things:
 * Conditional checker which make decision to permit or restrict running of test method.
 * `@Condition` annotation which allows to glue custom annotation and conditional checker.
 
-Let's write annotation which emulates standard JUnit's `@org.junit.Ignore`:
+Let's write an annotation which emulates standard JUnit's `@org.junit.Ignore`:
 
 ```java
 @Condition(IgnoreItChecker.class)
@@ -336,7 +336,7 @@ public @interface IgnoreIt {
 
 public class IgnoreItChecker implements ConditionChecker<IgnoreIt> {
     @Override
-    public boolean isSatisfied(final CheckerContext context) {
+    public boolean isSatisfied(final CheckerContext<IgnoreIt> context) {
         return false;
     }
 
@@ -344,6 +344,37 @@ public class IgnoreItChecker implements ConditionChecker<IgnoreIt> {
 ```
 
 That's all! Now, you can mark test classes or test methods with `@IgnoreIt` to skip test(s).
+
+
+## Composite annotations
+
+Sometimes it could be useful to have possibility to resolve the following cases (to prevent unnecessary code):
+
+* Specify all needed parameter for some existed annotation and do not copy-paste them.
+* Glue some conditional annotations into one annotation.
+
+It is possible, because extension mechanism resolves all hierarchy of classes and annotations.
+
+Let's make an annotation which allows to detect if our MySQL database works fine:
+
+```java
+@SocketIsOpened(host = "localhost", port = 3306)
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+public @interface MySQLWorks {
+}
+```
+
+Let's make an annotation which allows to run tests only on Linux machines with Java 8:
+
+```java
+@IfJavaVersion(JAVA_8)
+@RunningOnOS(LINUX)
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+public @interface OnLinuxWithJava8 {
+}
+```
 
 
 ## Building from source
