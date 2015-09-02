@@ -3,6 +3,10 @@ package com.github.vbauer.jconditions.util;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Vladislav Bauer
@@ -41,6 +45,24 @@ public final class ReflexUtils {
             object.setAccessible(true);
         }
         return object;
+    }
+
+    public static Collection<Annotation> findAllAnnotations(final Class<?> clazz) {
+        final Set<Annotation> result = new HashSet<Annotation>();
+        Class<?> current = clazz;
+
+        while (current != Object.class && current != null) {
+            final Class<?>[] interfaces = current.getInterfaces();
+            for (final Class<?> i : interfaces) {
+                result.addAll(findAllAnnotations(i));
+            }
+
+            final Class<?> superclass = current.getSuperclass();
+            result.addAll(Arrays.asList(current.getAnnotations()));
+            result.addAll(findAllAnnotations(superclass));
+            current = superclass;
+        }
+        return result;
     }
 
 }

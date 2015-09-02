@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Documented
 @Condition(IfScriptChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
 public @interface IfScript {
 
     String DEFAULT_JS = "js";

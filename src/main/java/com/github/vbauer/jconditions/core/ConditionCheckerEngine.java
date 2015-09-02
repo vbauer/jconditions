@@ -1,8 +1,11 @@
 package com.github.vbauer.jconditions.core;
 
 import com.github.vbauer.jconditions.util.ReflexUtils;
+import org.junit.runners.model.FrameworkMethod;
 
 import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * @author Vladislav Bauer
@@ -16,28 +19,35 @@ public final class ConditionCheckerEngine {
 
 
     public static ConditionChecker detectFailedChecker(
-        final Object instance, final Annotation... annotations
+        final Object instance, final FrameworkMethod method
     ) {
+        final Collection<Annotation> annotations = findAllAnnotations(instance, method);
         return findCheckerByAnnotations(instance, null, annotations);
     }
 
 
     private static ConditionChecker findCheckerByAnnotations(
-        final Object instance, final Annotation parent, final Annotation... annotations
+        final Object instance, final Annotation parent, final Collection<Annotation> annotations
     ) {
         for (final Annotation annotation : annotations) {
             if (!ReflexUtils.isInJavaLangAnnotationPackage(annotation)) {
                 final Class<? extends Annotation> annotationType = annotation.annotationType();
+
                 if (annotationType == Condition.class) {
                     final Condition condition = (Condition) annotation;
-                    final ConditionChecker checker = findCheckerByCondition(instance, parent, condition);
+                    final ConditionChecker checker =
+                        findCheckerByCondition(instance, parent, condition);
                     if (checker != null) {
                         return checker;
                     }
                 }
 
-                final Annotation[] extra = annotationType.getAnnotations();
-                final ConditionChecker checker = findCheckerByAnnotations(instance, annotation, extra);
+                final Collection<Annotation> extra =
+                    Arrays.asList(annotationType.getAnnotations());
+
+                final ConditionChecker checker =
+                    findCheckerByAnnotations(instance, annotation, extra);
+
                 if (checker != null) {
                     return checker;
                 }
@@ -59,5 +69,13 @@ public final class ConditionCheckerEngine {
         }
         return null;
     }
-    
+
+    private static Collection<Annotation> findAllAnnotations(
+        final Object instance, final FrameworkMethod method
+    ) {
+        final Collection<Annotation> result = ReflexUtils.findAllAnnotations(instance.getClass());
+        result.addAll(Arrays.asList(method.getAnnotations()));
+        return result;
+    }
+
 }

@@ -10,8 +10,6 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 
-import java.lang.annotation.Annotation;
-
 /**
  * @author Vladislav Bauer
  */
@@ -31,9 +29,8 @@ public class ConditionTestRunner extends BlockJUnit4ClassRunner {
             final InvokeMethod statement = (InvokeMethod) methodBlock(method);
             final Object test = ReflexUtils.getFieldValue(statement, "target");
 
-            final Annotation[] annotations = method.getAnnotations();
             final ConditionChecker checker =
-                ConditionCheckerEngine.detectFailedChecker(test, annotations);
+                ConditionCheckerEngine.detectFailedChecker(test, method);
 
             if (checker != null) {
                 notifier.fireTestIgnored(description);

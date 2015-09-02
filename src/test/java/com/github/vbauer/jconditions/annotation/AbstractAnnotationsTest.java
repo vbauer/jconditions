@@ -20,6 +20,7 @@ import java.net.URLConnection;
  */
 
 @Ignore
+@IgnoreIf(Never.class)
 public abstract class AbstractAnnotationsTest {
 
     public final boolean isSatisfiedInnerCheck = false;

@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Documented
 @Condition(RunIfChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
 public @interface RunIf {
 
     /**

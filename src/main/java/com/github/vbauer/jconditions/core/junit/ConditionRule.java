@@ -6,22 +6,18 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import java.lang.annotation.Annotation;
-
 /**
  * @author Vladislav Bauer
  */
 
-public class ConditionRule
-        implements MethodRule {
+public class ConditionRule implements MethodRule {
 
     @Override
     public Statement apply(
         final Statement base, final FrameworkMethod method, final Object target
     ) {
-        final Annotation[] annotations = method.getAnnotations();
         final ConditionChecker checker =
-            ConditionCheckerEngine.detectFailedChecker(target, annotations);
+            ConditionCheckerEngine.detectFailedChecker(target, method);
 
         if (checker != null) {
             return new IgnoreStatement(checker);

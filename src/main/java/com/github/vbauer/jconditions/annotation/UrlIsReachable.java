@@ -14,7 +14,7 @@ import java.lang.annotation.*;
 @Documented
 @Condition(UrlIsReachableChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
 public @interface UrlIsReachable {
 
     int DEFAULT_TIMEOUT = 10000;

@@ -14,7 +14,7 @@ import java.lang.annotation.*;
 @Documented
 @Condition(SocketIsOpenedChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
 public @interface SocketIsOpened {
 
     String DEFAULT_HOST = "0.0.0.0";
