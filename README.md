@@ -17,12 +17,14 @@ public class ExampleTest {
     @Test
     @RunningOnOS(LINUX)
     public void testRunningOnOS() throws Exception {
+        // Check some Linux app
         assertTrue(exec("some-linux-program"));
     }    
     @Test
     @IfJavaVersion(JAVA_8)
     public void testIfJavaVersion8() {
         // Check some Java 8 specific code
+        assertTrue(com.foo.Java8Class.isCorrect());
     }   
 }
 ```
@@ -353,7 +355,7 @@ Sometimes it could be useful to have possibility to resolve the following cases 
 * Specify all needed parameter for some existed annotation and do not copy-paste them.
 * Glue some conditional annotations into one annotation.
 
-It is possible, because extension mechanism resolves all hierarchy of classes and annotations.
+It is possible, because JConditions extension mechanism resolves all hierarchy of classes and annotations.
 
 Let's make an annotation which allows to detect if our MySQL database works fine:
 
@@ -368,8 +370,8 @@ public @interface MySQLWorks {
 Let's make an annotation which allows to run tests only on Linux machines with Java 8:
 
 ```java
-@IfJavaVersion(JAVA_8)
 @RunningOnOS(LINUX)
+@IfJavaVersion(JAVA_8)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
 public @interface OnLinuxWithJava8 {
