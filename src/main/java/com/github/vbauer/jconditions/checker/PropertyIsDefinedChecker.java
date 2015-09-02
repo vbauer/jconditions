@@ -18,21 +18,32 @@ public class PropertyIsDefinedChecker implements ConditionChecker<PropertyIsDefi
         final String[] keys = annotation.keys();
         final String[] values = annotation.values();
 
+        return isSatisfied(keys, values);
+    }
+
+
+    private boolean isSatisfied(final String[] keys, final String[] values) {
         int index = 0;
-        for (final String key : keys) {
-            final String variable = PropUtils.getSystemProperty(PropUtils.injectProperties(key));
-            try {
-                final String value = PropUtils.injectProperties(values[index++]);
-                if (!TextUtils.equalsSafe(variable, value)) {
-                    return false;
-                }
-            } catch (final IndexOutOfBoundsException ex) {
-                if (variable == null) {
-                    return false;
+        if (keys.length > 0) {
+            for (final String key : keys) {
+                final String variable = PropUtils.getSystemProperty(
+                    PropUtils.injectProperties(key)
+                );
+
+                try {
+                    final String value = PropUtils.injectProperties(values[index++]);
+                    if (!TextUtils.equalsSafe(variable, value)) {
+                        return false;
+                    }
+                } catch (final IndexOutOfBoundsException ex) {
+                    if (variable == null) {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

@@ -145,9 +145,15 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
-    @PropertyIsDefined(keys = "os.name", values = "Linux")
-    public void testEnvVarIsNotDefined() {
-        Assert.assertTrue(RunningOnOSChecker.currentOS().contains("linux"));
+    @PropertyIsDefined(keys = "unknown.env.parameter")
+    public void testEnvVarHasWrongKey() {
+        Assert.fail();
+    }
+
+    @Test
+    @PropertyIsDefined(keys = "os.name", values = "Linux2")
+    public void testEnvVarHasWrongValue() {
+        Assert.fail();
     }
 
     @Test
