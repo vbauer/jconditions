@@ -1,7 +1,6 @@
 package com.github.vbauer.jconditions.annotation;
 
 import com.github.vbauer.jconditions.checker.IfJavaVersionChecker;
-import com.github.vbauer.jconditions.checker.RunningOnOSChecker;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.misc.Always;

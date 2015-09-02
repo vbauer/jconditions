@@ -20,7 +20,7 @@ public final class ConditionCheckerFactory {
         final Object instance, final Class<? extends ConditionChecker> checkerClass
     ) {
         try {
-            return ConditionCheckerFactory.createImpl(instance, checkerClass);
+            return createImpl(instance, checkerClass);
         } catch (final RuntimeException ex) {
             throw ex;
         } catch (final Exception ex) {

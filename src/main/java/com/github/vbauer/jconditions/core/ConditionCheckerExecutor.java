@@ -38,7 +38,7 @@ public final class ConditionCheckerExecutor {
     ) {
         try {
             return checker.isSatisfied(context);
-        } catch (final Exception ex) {
+        } catch (final Throwable ex) {
             return false;
         }
     }
