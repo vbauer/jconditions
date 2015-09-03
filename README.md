@@ -1,12 +1,12 @@
 
 # JConditions [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JConditions-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2414) [![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions) [![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master) [![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
 
-<img align="right" style="margin-left: 15px" width="300" height="300" src="misc/logo.png" />
+<img align="right" style="margin-left: 15px" width="200" height="200" src="misc/logo.png" />
 
 > There is an exception to every rule.
 
 **JConditions** is an extension for [JUnit](http://junit.org) framework, which allows to mark test methods with specific conditional annotations.
-It helps to keep clean your test methods and prevents a lot of unnecessary code (with [Assume](http://junit.sourceforge.net/javadoc/org/junit/Assume.html) class).
+It helps to keep clean your test methods using declarative programming and prevents a lot of unnecessary code (see [Assume](http://junit.sourceforge.net/javadoc/org/junit/Assume.html) class).
 
 
 ## 10 second example
