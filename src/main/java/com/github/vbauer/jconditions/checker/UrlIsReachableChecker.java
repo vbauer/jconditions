@@ -28,7 +28,7 @@ public class UrlIsReachableChecker implements ConditionChecker<UrlIsReachable> {
                 return false;
             }
         }
-        return true;
+        return urlAddresses.length > 0;
     }
 
     private boolean isReachable(final String url, final int timeout) {

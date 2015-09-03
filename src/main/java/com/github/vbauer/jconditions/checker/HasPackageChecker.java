@@ -25,7 +25,7 @@ public class HasPackageChecker implements ConditionChecker<HasPackage> {
                 return false;
             }
         }
-        return true;
+        return packageNames.length > 0;
     }
 
 }

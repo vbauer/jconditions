@@ -26,7 +26,7 @@ public class AppIsInstalledChecker implements ConditionChecker<AppIsInstalled> {
                 return false;
             }
         }
-        return true;
+        return applications.length > 0;
     }
 
     private boolean isAppInstalled(final String application) {

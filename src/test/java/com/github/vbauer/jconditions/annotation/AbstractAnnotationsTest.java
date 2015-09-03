@@ -222,10 +222,21 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
+    @HasFreeSpace(value = { "/", "C:\\" }, min = 1024)
+    public void testHasFreeSpace() {
+        Assert.assertTrue(true);
+    }
+
+    @Test
+    @HasFreeSpace(value = { "/", "C:\\" }, max = 1024)
+    public void testHasHugeDisk() {
+        Assert.fail();
+    }
+
+    @Test
     @Ignore
     public void testStandardIgnore() {
-        // Standard @Ignore annotation was broken
-        Assert.fail();
+        Assert.fail("Standard @Ignore annotation was broken");
     }
 
 

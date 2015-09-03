@@ -23,14 +23,14 @@ public class ExistsOnFSChecker implements ConditionChecker<ExistsOnFS> {
 
 
     private boolean isSatisfied(
-        final String[] filePaths, final ExistsOnFS.Type[] types
+        final String[] filePaths, final ExistsOnFS.Type... types
     ) throws Exception {
         for (final String filePath : filePaths) {
             if (isSatisfied(filePath, types)) {
                 return false;
             }
         }
-        return true;
+        return filePaths.length > 0;
     }
 
     private boolean isSatisfied(

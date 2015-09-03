@@ -38,6 +38,7 @@ public class ExampleTest {
     <li><a href="#appisinstalled">@AppIsInstalled</a></li>
     <li><a href="#existsonfs">@ExistsOnFS</a></li>
     <li><a href="#hasclass">@HasClass</a></li>
+    <li><a href="#hasfreespace">@HasFreeSpace</a></li>
     <li><a href="#haspackage">@HasPackage</a></li>
     <li><a href="#ifjavaversion">@IfJavaVersion</a></li>
     <li><a href="#ifscript">@IfScript</a></li>
@@ -139,6 +140,27 @@ It could be useful to check integration with optional features.
 @HasClass("org.junit.Assert")
 public void testHasClass() throws Exception {
     Assert.assertNotNull(Class.forName("org.junit.Assert"));
+}
+```
+
+### @HasFreeSpace
+**@HasFreeSpace** checks that FS element(s) / disk(s) has free space.
+It could be useful to check if it is possible to:
+
+* download some big some file from remote server
+* generate and store on FS some data
+
+Available parameters:
+
+* **value** - disk or disks that should be checked (ex: "C:\\").
+* **min** - minimum amount of available free space on disk in bytes.
+* **max** - maximum amount of available free space on disk in bytes.
+
+```java
+@Test
+@HasFreeSpace(value = { "/", "C:\\" }, min = 1024)
+public void testHasFreeSpace() {
+    // Download some file
 }
 ```
 

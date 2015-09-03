@@ -42,10 +42,11 @@ public class IfScriptChecker implements ConditionChecker<IfScript> {
         if (scriptEngine != null) {
             for (final String script : scripts) {
                 final Object eval = scriptEngine.eval(script, scriptContext);
-                if (isTrueValue(eval)) {
-                    return true;
+                if (!isTrueValue(eval)) {
+                    return false;
                 }
             }
+            return scripts.length > 0;
         }
         return false;
     }

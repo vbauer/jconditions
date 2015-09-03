@@ -25,7 +25,7 @@ public class HasClassChecker implements ConditionChecker<HasClass> {
                 return false;
             }
         }
-        return true;
+        return classNames.length > 0;
     }
 
     private boolean hasClass(final String className) {
