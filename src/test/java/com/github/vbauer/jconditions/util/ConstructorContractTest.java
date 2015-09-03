@@ -1,8 +1,9 @@
 package com.github.vbauer.jconditions.util;
 
+import com.github.vbauer.jconditions.core.CheckerContext;
+import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.core.ConditionCheckerEngine;
 import com.github.vbauer.jconditions.core.ConditionCheckerExecutor;
-import com.github.vbauer.jconditions.core.ConditionCheckerFactory;
 import com.pushtorefresh.private_constructor_checker.PrivateConstructorChecker;
 import org.junit.Test;
 
@@ -18,7 +19,6 @@ public class ConstructorContractTest {
             .forClasses(
                 ConditionCheckerEngine.class,
                 ConditionCheckerExecutor.class,
-                ConditionCheckerFactory.class,
                 FSUtils.class,
                 InOutUtils.class,
                 NetUtils.class,
@@ -29,6 +29,30 @@ public class ConstructorContractTest {
             )
             .expectedTypeOfException(UnsupportedOperationException.class)
             .check();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testInstantiateNegativeRuntimeException() {
+        ReflexUtils.instantiate(null, null);
+    }
+
+    @Test(expected = Exception.class)
+    public void testInstantiateNegativeException() {
+        ReflexUtils.instantiate(new Object(), NegativeChecker.class);
+    }
+
+
+    private class NegativeChecker implements ConditionChecker {
+        private final boolean value;
+
+        private NegativeChecker(final boolean value) {
+            this.value = value;
+        }
+
+        @Override
+        public boolean isSatisfied(final CheckerContext context) throws Exception {
+            return value;
+        }
     }
 
 }

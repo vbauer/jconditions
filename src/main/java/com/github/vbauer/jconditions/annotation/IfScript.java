@@ -4,6 +4,7 @@ import com.github.vbauer.jconditions.checker.IfScriptChecker;
 import com.github.vbauer.jconditions.core.Condition;
 
 import java.lang.annotation.*;
+import java.util.concurrent.Callable;
 
 /**
  * Allows to write custom conditional rules using JSR 223: Scripting for the JavaTM Platform.
@@ -34,5 +35,12 @@ public @interface IfScript {
      * @return engine type.
      */
     String engine() default DEFAULT_JS;
+
+    /**
+     * It is possible to add some data in script execution using an extra context provider.
+     * Data will be available in script as "context" parameter.
+     * @return class of content provider
+     */
+    Class<? extends Callable> context() default Callable.class;
 
 }

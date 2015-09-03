@@ -202,6 +202,8 @@ Available parameters:
 
 * **values** - script or scripts that should be executed. Return value will be converted to boolean type (even `String` and `Number`s).
 * **engine** - type of script engine (default value is "js").
+* **context** - context provider which provides an extra data in script as `"context"` variable.
+
 
 Parameters which are available in script context:
 

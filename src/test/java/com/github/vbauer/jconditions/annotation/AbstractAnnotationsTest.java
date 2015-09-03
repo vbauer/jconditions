@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.concurrent.Callable;
 
 /**
  * @author Vladislav Bauer
@@ -187,6 +188,12 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
+    @IfScript(value = "context == true", context = ExtraContext.class)
+    public void testIfScriptContext() {
+        Assert.fail();
+    }
+
+    @Test
     @ResourceIsAvailable(
         source = "http://apple.com",
         target = "${java.io.tmpdir}/apple-homepage.html",
@@ -275,6 +282,16 @@ public abstract class AbstractAnnotationsTest {
     private static class StaticNestedClass implements ConditionChecker {
         @Override
         public boolean isSatisfied(final CheckerContext context) throws Exception {
+            return false;
+        }
+    }
+
+    /**
+     * @author Vladislav Bauer
+     */
+    private static class ExtraContext implements Callable<Boolean> {
+        @Override
+        public Boolean call() throws Exception {
             return false;
         }
     }

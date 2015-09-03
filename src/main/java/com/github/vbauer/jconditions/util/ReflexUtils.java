@@ -2,7 +2,9 @@ package com.github.vbauer.jconditions.util;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
@@ -60,6 +62,37 @@ public final class ReflexUtils {
             current = superclass;
         }
         return result;
+    }
+
+    public static <T> T instantiate(final Object instance, final Class<T> checkerClass) {
+        try {
+            return instantiateImpl(instance, checkerClass);
+        } catch (final RuntimeException ex) {
+            throw ex;
+        } catch (final Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    private static <T> T instantiateImpl(final Object instance, final Class<T> clazz) throws Exception {
+        if (clazz.isMemberClass() && !Modifier.isStatic(clazz.getModifiers())) {
+            return instantiateInnerClass(instance, clazz);
+        }
+        return instantiateClass(clazz);
+    }
+
+    private static <T> T instantiateClass(final Class<T> clazz) throws Exception {
+        final Constructor<T> constructor = clazz.getDeclaredConstructor();
+        return ReflexUtils.makeAccessible(constructor).newInstance();
+    }
+
+    private static <T> T instantiateInnerClass(
+        final Object instance, final Class<T> clazz
+    ) throws Exception {
+        final Class<?> outerClass = clazz.getDeclaringClass();
+        final Constructor<T> constructor = clazz.getDeclaredConstructor(outerClass);
+        return ReflexUtils.makeAccessible(constructor).newInstance(instance);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.github.vbauer.jconditions.core;
 
+import com.github.vbauer.jconditions.util.ReflexUtils;
+
 /**
  * @author Vladislav Bauer
  */
@@ -28,7 +30,7 @@ public final class ConditionCheckerExecutor {
         final Class<? extends ConditionChecker> checkerClass
     ) {
         final Object instance = context.getInstance();
-        final ConditionChecker checker = ConditionCheckerFactory.create(instance, checkerClass);
+        final ConditionChecker checker = ReflexUtils.instantiate(instance, checkerClass);
         return isSatisfied(context, checker);
     }
 

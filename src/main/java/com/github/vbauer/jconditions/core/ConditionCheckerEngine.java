@@ -73,7 +73,7 @@ public final class ConditionCheckerEngine {
         final Object instance, final Annotation parent, final Condition condition
     ) {
         final Class<? extends ConditionChecker> checkerClass = condition.value();
-        final ConditionChecker checker = ConditionCheckerFactory.create(instance, checkerClass);
+        final ConditionChecker checker = ReflexUtils.instantiate(instance, checkerClass);
         final CheckerContext context = new CheckerContext(instance, parent);
 
         if (!ConditionCheckerExecutor.isSatisfied(context, checker)) {
