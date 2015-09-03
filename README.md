@@ -120,7 +120,7 @@ It is also possible to configure multiple values.
 Available parameters:
 
 * **value** - file(s) or directory(ies).
-* **type** - type of FS element (FILE / DIRECTORY).
+* **type** - type(s) of FS element (FILE / DIRECTORY / SYMLINK).
 
 ```java
 @Test

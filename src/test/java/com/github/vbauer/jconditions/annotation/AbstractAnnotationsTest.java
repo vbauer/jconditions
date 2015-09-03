@@ -70,7 +70,7 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
-    @ExistsOnFS(value = "src", type = ExistsOnFS.Type.DIRECTORY)
+    @ExistsOnFS(value = "src", type = { ExistsOnFS.Type.DIRECTORY, ExistsOnFS.Type.SYMLINK })
     public void testDirectoryExists() throws Exception {
         Assert.assertTrue(FSUtils.directoryExists("src"));
     }

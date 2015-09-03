@@ -25,10 +25,10 @@ public @interface ExistsOnFS {
     String[] value();
 
     /**
-     * Type of FS element(s), single for all elements.
+     * Type(s) of FS element(s).
      * @return type
      */
-    Type type() default Type.FILE;
+    Type[] type() default Type.FILE;
 
 
     /**
@@ -37,7 +37,8 @@ public @interface ExistsOnFS {
      */
     enum Type {
         FILE,
-        DIRECTORY
+        DIRECTORY,
+        SYMLINK
     }
 
 }
