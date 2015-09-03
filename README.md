@@ -6,6 +6,7 @@
 > There is an exception to every rule.
 
 **JConditions** is an extension for [JUnit](http://junit.org) framework, which allows to mark test methods with specific conditional annotations.
+This annotations allow to permit or restrict execution of test methods.
 It helps to keep clean your test methods using declarative programming and prevents a lot of unnecessary code (see [Assume](http://junit.sourceforge.net/javadoc/org/junit/Assume.html) class).
 
 
@@ -98,7 +99,7 @@ dependencies {
 
 Some things that you need to know before exploring an examples:
 
-* Each described annotation has a simple example how to use it. Examples are very simple and existed only to show the idea of usage.
+* Each described annotation has a simple example how to use it. Examples are very simple, they are existed only to show the main idea of usage.
 * Most of them could use injections to insert environment variables. This injections/substitutions could be useful to parametrize tests or to organize profiles.
 **EX:** "${java.io.tmpdir}/test.html"
 
@@ -408,7 +409,7 @@ public @interface OnLinuxWithJava8 {
 
 ## Building from source
 
-JConditions uses Maven for its build. To build project, run:
+JConditions uses [Maven](https://maven.apache.org) for its build. To build project, run:
 
 ```bash
 mvn clean install -P strict
