@@ -1,6 +1,8 @@
 
 # JConditions [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JConditions-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2414) [![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions) [![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master) [![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
 
+<img align="right" style="margin-left: 15px" width="300" height="300" src="misc/logo.png" />
+
 > There is an exception to every rule.
 
 **JConditions** is an extension for [JUnit](http://junit.org) framework, which allows to mark test methods with specific conditional annotations.
@@ -201,16 +203,17 @@ All other JSR233-compatible languages will be included automatically if they are
 Available parameters:
 
 * **values** - script or scripts that should be executed. Return value will be converted to boolean type (even `String` and `Number`s).
-* **engine** - type of script engine (default value is "js").
+* **engine** - type of script engine (default value is `"js"`).
 * **context** - context provider which provides an extra data in script as `"context"` variable.
 
 
 Parameters which are available in script context:
 
-* **test** - current instance of running test.
+* **test** - current instance of running test class.
 * **env** - environment variables (`System.getenv()`).
 * **props** - system properties (`System.getProperties()`).
 * **console** - console object (`System.console()`).
+* **context** - extra data which could be created using `context` provider.
  
 ```java
 @Test
