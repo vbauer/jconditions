@@ -4,7 +4,6 @@ import com.github.vbauer.jconditions.annotation.ResourceIsAvailable;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.util.FSUtils;
-import com.github.vbauer.jconditions.util.InOutUtils;
 import com.github.vbauer.jconditions.util.NetUtils;
 import com.github.vbauer.jconditions.util.PropUtils;
 
@@ -28,8 +27,8 @@ public class ResourceIsAvailableChecker implements ConditionChecker<ResourceIsAv
         final boolean cache = annotation.cache();
 
         if (!FSUtils.fileExists(target) || !cache && FSUtils.deleteFile(target)) {
-            final URLConnection urlConnection = InOutUtils.connectURL(source, timeout);
-            final File file = InOutUtils.copyURLContentToFile(urlConnection, target);
+            final URLConnection urlConnection = NetUtils.connectURL(source, timeout);
+            final File file = NetUtils.copyURLContentToFile(urlConnection, target);
             if (!cache) {
                 file.deleteOnExit();
             }
