@@ -1,9 +1,6 @@
 package com.github.vbauer.jconditions.util;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
@@ -14,7 +11,6 @@ import java.net.URLConnection;
 
 public final class NetUtils {
 
-    public static final int BUFFER_SIZE = 1024;
     public static final String HTTP_PREFIX = "http://";
 
 
@@ -38,19 +34,14 @@ public final class NetUtils {
     public static File copyURLContentToFile(
         final URLConnection connection, final String target
     ) throws Exception {
-        final byte[] bytes = new byte[BUFFER_SIZE];
-        int read;
-
         InputStream input = null;
         OutputStream output = null;
+
         try {
             final File file = new File(target);
             output = new FileOutputStream(file);
             input = connection.getInputStream();
-
-            while ((read = input.read(bytes)) != -1) {
-                output.write(bytes, 0, read);
-            }
+            InOutUtils.copy(input, output);
             return file;
         } finally {
             InOutUtils.closeQuietly(input);
@@ -58,7 +49,7 @@ public final class NetUtils {
         }
     }
 
-    public static URLConnection connectURL(final String uri, final int timeout) throws Exception {
+    public static URLConnection connectURL(final String uri, final int timeout) throws IOException {
         final URL url = new URL(uri);
         final URLConnection connection = url.openConnection();
         connection.setConnectTimeout(timeout);
