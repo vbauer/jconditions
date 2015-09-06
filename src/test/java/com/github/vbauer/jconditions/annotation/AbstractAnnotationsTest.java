@@ -28,6 +28,12 @@ public abstract class AbstractAnnotationsTest {
 
 
     @Test
+    @RunIf(ExceptionClass.class)
+    public void testIgnoreIfException() {
+        Assert.fail();
+    }
+
+    @Test
     @IgnoreIf(Always.class)
     public void testIgnoreIfAlways() {
         Assert.fail();
@@ -235,8 +241,14 @@ public abstract class AbstractAnnotationsTest {
     }
 
     @Test
+    @HasFreeSpace(value = { "/", "C:\\" }, min = Long.MAX_VALUE)
+    public void testHasNotMinFreeSpace() {
+        Assert.fail();
+    }
+
+    @Test
     @HasFreeSpace(value = { "/", "C:\\" }, max = 1024)
-    public void testHasHugeDisk() {
+    public void testHasNotMaxFreeSpace() {
         Assert.fail();
     }
 
@@ -265,6 +277,16 @@ public abstract class AbstractAnnotationsTest {
         Assert.assertTrue(FSUtils.fileExists(path));
     }
 
+
+    /**
+     * @author Vladislav Bauer
+     */
+    private static final class ExceptionClass implements ConditionChecker {
+        @Override
+        public boolean isSatisfied(final CheckerContext context) throws Exception {
+            throw new RuntimeException();
+        }
+    }
 
     /**
      * @author Vladislav Bauer
