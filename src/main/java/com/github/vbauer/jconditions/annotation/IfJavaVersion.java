@@ -20,6 +20,7 @@ public @interface IfJavaVersion {
     String JAVA_6 = "1.6";
     String JAVA_7 = "1.7";
     String JAVA_8 = "1.8";
+    String JAVA_9 = "1.9";
 
     /**
      * Version or versions of JVM that should be checked.

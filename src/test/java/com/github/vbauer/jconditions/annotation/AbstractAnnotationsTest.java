@@ -21,8 +21,7 @@ import java.util.concurrent.Callable;
  */
 
 @Ignore
-@IgnoreIf(Never.class)
-public abstract class AbstractAnnotationsTest {
+public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTest {
 
     public final boolean isSatisfiedInnerCheck = false;
 

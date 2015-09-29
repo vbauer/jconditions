@@ -32,14 +32,17 @@ public final class FSUtils {
     public static boolean isSymlink(final String path) throws IOException {
         final File file = new File(path);
         final File fileInCanonicalDir;
+
         if (file.getParent() == null) {
             fileInCanonicalDir = file;
         } else {
             fileInCanonicalDir = new File(file.getParentFile().getCanonicalFile(), file.getName());
         }
-        return !fileInCanonicalDir.getCanonicalFile().equals(fileInCanonicalDir.getAbsoluteFile());
-    }
 
+        final File canonicalFile = fileInCanonicalDir.getCanonicalFile();
+        final File absoluteFile = fileInCanonicalDir.getAbsoluteFile();
+        return !canonicalFile.equals(absoluteFile);
+    }
 
     public static boolean deleteFile(final String path) {
         final File file = new File(path);
