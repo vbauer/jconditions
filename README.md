@@ -1,5 +1,11 @@
 
-# JConditions [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JConditions-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2414) [![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions) [![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master) [![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
+# JConditions
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JConditions-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2414)
+[![Build Status](https://travis-ci.org/vbauer/jconditions.svg)](https://travis-ci.org/vbauer/jconditions)
+[![Coverage Status](https://coveralls.io/repos/vbauer/jconditions/badge.svg?branch=master)](https://coveralls.io/r/vbauer/jconditions?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/562e9efb36d0ab001600163a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/562e9efb36d0ab001600163a)
+[![Maven](https://img.shields.io/github/tag/vbauer/jconditions.svg?label=maven)](https://jitpack.io/#vbauer/jconditions)
 
 <img align="right" style="margin-left: 15px" width="200" height="200" src="misc/logo.png" />
 
