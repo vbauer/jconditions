@@ -25,13 +25,16 @@ public class IfScriptChecker implements ConditionChecker<IfScript> {
     public static final String CONTEXT_CONTEXT = "context";
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<IfScript> context) throws Exception {
         final Object testInstance = context.getInstance();
         final IfScript annotation = context.getAnnotation();
 
-		@SuppressWarnings("rawtypes")
-		final Class<? extends Callable> contextProviderClass = annotation.context();
+        @SuppressWarnings("rawtypes")
+        final Class<? extends Callable> contextProviderClass = annotation.context();
         final String engineName = annotation.engine();
         final String[] scripts = annotation.value();
 
@@ -80,7 +83,7 @@ public class IfScriptChecker implements ConditionChecker<IfScript> {
     }
 
     @SuppressWarnings("rawtypes")
-	private Object getExtraContext(
+    private Object getExtraContext(
         final Object testInstance, final Class<? extends Callable> providerClass
     ) throws Exception {
         if (providerClass != null && providerClass != Callable.class) {

@@ -10,6 +10,9 @@ import com.github.vbauer.jconditions.core.ConditionChecker;
 
 public class HasPackageChecker implements ConditionChecker<HasPackage> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<HasPackage> context) throws Exception {
         final HasPackage annotation = context.getAnnotation();

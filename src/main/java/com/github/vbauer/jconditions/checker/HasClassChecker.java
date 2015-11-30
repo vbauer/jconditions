@@ -10,6 +10,9 @@ import com.github.vbauer.jconditions.core.ConditionChecker;
 
 public class HasClassChecker implements ConditionChecker<HasClass> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<HasClass> context) throws Exception {
         final HasClass annotation = context.getAnnotation();

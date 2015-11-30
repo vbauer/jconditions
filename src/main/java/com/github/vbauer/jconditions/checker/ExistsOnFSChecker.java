@@ -12,6 +12,9 @@ import com.github.vbauer.jconditions.util.PropUtils;
 
 public class ExistsOnFSChecker implements ConditionChecker<ExistsOnFS> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<ExistsOnFS> context) throws Exception {
         final ExistsOnFS annotation = context.getAnnotation();

@@ -11,6 +11,9 @@ import com.github.vbauer.jconditions.util.PropUtils;
 
 public class AppIsInstalledChecker implements ConditionChecker<AppIsInstalled> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<AppIsInstalled> context) throws Exception {
         final AppIsInstalled annotation = context.getAnnotation();

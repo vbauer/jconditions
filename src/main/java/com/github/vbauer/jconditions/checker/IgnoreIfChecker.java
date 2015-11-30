@@ -11,12 +11,15 @@ import com.github.vbauer.jconditions.core.ConditionCheckerExecutor;
 
 public class IgnoreIfChecker implements ConditionChecker<IgnoreIf> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<IgnoreIf> context) throws Exception {
         final IgnoreIf annotation = context.getAnnotation();
 
         @SuppressWarnings("rawtypes")
-		final Class<? extends ConditionChecker>[] checkerClasses = annotation.value();
+        final Class<? extends ConditionChecker>[] checkerClasses = annotation.value();
 
         //noinspection unchecked
         return !ConditionCheckerExecutor.isSatisfied(context, checkerClasses);

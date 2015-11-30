@@ -18,18 +18,20 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(ExistsOnFSChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface ExistsOnFS {
 
     /**
      * Files or directories that should be checked.
      * Parameter depends on {@link #type} value.
+     *
      * @return files or directories
      */
     String[] value();
 
     /**
      * Type(s) of FS element(s).
+     *
      * @return type
      */
     Type[] type() default Type.FILE;
@@ -37,6 +39,7 @@ public @interface ExistsOnFS {
 
     /**
      * Type of FS element.
+     *
      * @author Vladislav Bauer
      */
     enum Type {

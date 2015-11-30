@@ -12,6 +12,9 @@ import com.github.vbauer.jconditions.util.PropUtils;
 
 public class UrlIsReachableChecker implements ConditionChecker<UrlIsReachable> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<UrlIsReachable> context) throws Exception {
         final UrlIsReachable annotation = context.getAnnotation();

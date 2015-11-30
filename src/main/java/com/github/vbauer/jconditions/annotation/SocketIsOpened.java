@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(SocketIsOpenedChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface SocketIsOpened {
 
     String DEFAULT_HOST = "0.0.0.0";
@@ -27,18 +27,21 @@ public @interface SocketIsOpened {
 
     /**
      * Host address.
+     *
      * @return host
      */
     String host() default DEFAULT_HOST;
 
     /**
      * Port number.
+     *
      * @return port
      */
     int port();
 
     /**
      * Maximum time for connection to the socket.
+     *
      * @return timeout
      */
     int timeout() default DEFAULT_TIMEOUT;

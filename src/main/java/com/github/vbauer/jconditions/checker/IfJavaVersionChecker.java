@@ -14,6 +14,9 @@ public class IfJavaVersionChecker implements ConditionChecker<IfJavaVersion> {
     public static final String PROPERTY_JAVA_VERSION = "java.version";
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<IfJavaVersion> context) throws Exception {
         final IfJavaVersion annotation = context.getAnnotation();

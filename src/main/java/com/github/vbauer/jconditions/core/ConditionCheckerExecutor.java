@@ -13,8 +13,8 @@ public final class ConditionCheckerExecutor {
     }
 
 
-    @SuppressWarnings({ "rawtypes" })
-	public static boolean isSatisfied(
+    @SuppressWarnings("rawtypes")
+    public static boolean isSatisfied(
         final CheckerContext<?> context,
         final Class<? extends ConditionChecker>... checkerClasses
     ) {
@@ -27,7 +27,7 @@ public final class ConditionCheckerExecutor {
     }
 
     @SuppressWarnings("rawtypes")
-	public static boolean isSatisfied(
+    public static boolean isSatisfied(
         final CheckerContext context,
         final Class<? extends ConditionChecker> checkerClass
     ) {
@@ -36,9 +36,9 @@ public final class ConditionCheckerExecutor {
         return isSatisfied(context, checker);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static boolean isSatisfied(
-        final CheckerContext context, final ConditionChecker checker
+            final CheckerContext context, final ConditionChecker checker
     ) {
         try {
             return checker.isSatisfied(context);

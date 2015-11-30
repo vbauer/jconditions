@@ -50,6 +50,7 @@ public final class ConditionCheckerEngine {
                 final Condition condition = (Condition) annotation;
                 final ConditionChecker<?> checker =
                     findCheckerByCondition(instance, parent, condition);
+
                 if (checker != null) {
                     return checker;
                 }
@@ -68,13 +69,13 @@ public final class ConditionCheckerEngine {
         return null;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private static <T> ConditionChecker<T> findCheckerByCondition(
         final T instance, final Annotation parent, final Condition condition
     ) {
         final Class<? extends ConditionChecker> checkerClass = condition.value();
         final ConditionChecker<T> checker = ReflexUtils.instantiate(instance, checkerClass);
-		final CheckerContext<T> context = new CheckerContext(instance, parent);
+        final CheckerContext<T> context = new CheckerContext(instance, parent);
 
         if (!ConditionCheckerExecutor.isSatisfied(context, checker)) {
             return checker;

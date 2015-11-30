@@ -21,7 +21,7 @@ import com.github.vbauer.jconditions.util.PropUtils;
  * @author Vladislav Bauer
  */
 
-@IgnoreIf(Never.class)
+@Ignore
 public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTest {
 
     public final boolean isSatisfiedInnerCheck = false;

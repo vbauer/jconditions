@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(IfJavaVersionChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface IfJavaVersion {
 
     String JAVA_6 = "1.6";
@@ -28,6 +28,7 @@ public @interface IfJavaVersion {
 
     /**
      * Version or versions of JVM that should be checked.
+     *
      * @return java version
      */
     String[] value();

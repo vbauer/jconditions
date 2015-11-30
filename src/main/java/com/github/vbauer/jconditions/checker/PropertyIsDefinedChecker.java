@@ -12,6 +12,9 @@ import com.github.vbauer.jconditions.util.TextUtils;
 
 public class PropertyIsDefinedChecker implements ConditionChecker<PropertyIsDefined> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<PropertyIsDefined> context) throws Exception {
         final PropertyIsDefined annotation = context.getAnnotation();

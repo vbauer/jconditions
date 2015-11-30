@@ -12,6 +12,9 @@ import java.io.File;
 
 public class HasFreeSpaceChecker implements ConditionChecker<HasFreeSpace> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<HasFreeSpace> context) throws Exception {
         final HasFreeSpace annotation = context.getAnnotation();

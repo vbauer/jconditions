@@ -14,6 +14,9 @@ public class RunningOnOSChecker implements ConditionChecker<RunningOnOS> {
     public static final String PROPERTY_OS_NAME = "os.name";
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<RunningOnOS> context) throws Exception {
         final RunningOnOS annotation = context.getAnnotation();

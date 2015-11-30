@@ -18,11 +18,12 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(HasClassChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface HasClass {
 
     /**
      * Full names of class or classes that should be checked.
+     *
      * @return classes
      */
     String[] value();

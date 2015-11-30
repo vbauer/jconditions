@@ -15,6 +15,9 @@ import java.net.Socket;
 
 public class SocketIsOpenedChecker implements ConditionChecker<SocketIsOpened> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(final CheckerContext<SocketIsOpened> context) throws Exception {
         final SocketIsOpened annotation = context.getAnnotation();

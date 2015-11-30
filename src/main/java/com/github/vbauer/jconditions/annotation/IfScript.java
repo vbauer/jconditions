@@ -21,7 +21,7 @@ import java.util.concurrent.Callable;
 @Documented
 @Condition(IfScriptChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface IfScript {
 
     String DEFAULT_JS = "js";
@@ -29,6 +29,7 @@ public @interface IfScript {
     /**
      * Script or scripts that should be executed.
      * Return value will be converted to boolean type (even "String" and "Number"s).
+     *
      * @return script or scripts
      */
     String[] value();
@@ -36,6 +37,7 @@ public @interface IfScript {
     /**
      * Type of script engine.
      * Script engine will be detected using this parameter and mime type / name / language.
+     *
      * @return engine type.
      */
     String engine() default DEFAULT_JS;
@@ -43,9 +45,10 @@ public @interface IfScript {
     /**
      * It is possible to add some data in script execution using an extra context provider.
      * Data will be available in script as "context" parameter.
+     *
      * @return class of content provider
      */
     @SuppressWarnings("rawtypes")
-	Class<? extends Callable> context() default Callable.class;
+    Class<? extends Callable> context() default Callable.class;
 
 }

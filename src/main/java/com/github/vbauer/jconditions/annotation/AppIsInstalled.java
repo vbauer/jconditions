@@ -18,11 +18,12 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(AppIsInstalledChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface AppIsInstalled {
 
     /**
      * Application or applications that should be checked.
+     *
      * @return applications
      */
     String[] value();

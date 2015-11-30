@@ -20,14 +20,15 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(RunIfChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface RunIf {
 
     /**
      * Condition checkers that should be checked.
+     *
      * @return condition checkers
      */
     @SuppressWarnings("rawtypes")
-	Class<? extends ConditionChecker>[] value();
+    Class<? extends ConditionChecker>[] value();
 
 }

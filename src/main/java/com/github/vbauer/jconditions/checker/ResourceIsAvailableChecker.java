@@ -16,6 +16,9 @@ import java.net.URLConnection;
 
 public class ResourceIsAvailableChecker implements ConditionChecker<ResourceIsAvailable> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSatisfied(
         final CheckerContext<ResourceIsAvailable> context

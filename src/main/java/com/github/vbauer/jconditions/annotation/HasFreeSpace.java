@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Documented
 @Condition(HasFreeSpaceChecker.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface HasFreeSpace {
 
     /**
@@ -29,18 +29,21 @@ public @interface HasFreeSpace {
 
     /**
      * Disk or disks that should be checked (ex: "C:\\").
+     *
      * @return element(s) on FS
      */
     String[] value();
 
     /**
      * Minimum amount of available free space on disk.
+     *
      * @return min space in bytes
      */
     long min() default UNDEFINED;
 
     /**
      * Maximum amount of available free space on disk.
+     *
      * @return max space in bytes
      */
     long max() default UNDEFINED;
