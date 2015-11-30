@@ -6,10 +6,10 @@ import com.github.vbauer.jconditions.core.ConditionChecker;
 /**
  * @author Vladislav Bauer
  */
-public class Never implements ConditionChecker {
+public class Never<T> implements ConditionChecker<T> {
 
     @Override
-    public boolean isSatisfied(final CheckerContext context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
         return false;
     }
 

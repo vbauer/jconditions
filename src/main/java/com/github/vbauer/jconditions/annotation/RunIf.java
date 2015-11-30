@@ -1,10 +1,14 @@
 package com.github.vbauer.jconditions.annotation;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 import com.github.vbauer.jconditions.checker.RunIfChecker;
 import com.github.vbauer.jconditions.core.Condition;
 import com.github.vbauer.jconditions.core.ConditionChecker;
-
-import java.lang.annotation.*;
 
 /**
  * It is an opposite annotation to {@link IgnoreIf}.
@@ -23,6 +27,7 @@ public @interface RunIf {
      * Condition checkers that should be checked.
      * @return condition checkers
      */
-    Class<? extends ConditionChecker>[] value();
+    @SuppressWarnings("rawtypes")
+	Class<? extends ConditionChecker>[] value();
 
 }

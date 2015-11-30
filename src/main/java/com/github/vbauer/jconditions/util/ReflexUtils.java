@@ -56,10 +56,8 @@ public final class ReflexUtils {
                 result.addAll(findAllAnnotations(i));
             }
 
-            final Class<?> superclass = current.getSuperclass();
             result.addAll(Arrays.asList(current.getAnnotations()));
-            result.addAll(findAllAnnotations(superclass));
-            current = superclass;
+            current = current.getSuperclass();
         }
         return result;
     }

@@ -1,16 +1,17 @@
 package com.github.vbauer.jconditions.checker;
 
+import java.util.concurrent.Callable;
+
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.SimpleScriptContext;
+
 import com.github.vbauer.jconditions.annotation.IfScript;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.util.PropUtils;
 import com.github.vbauer.jconditions.util.ReflexUtils;
 import com.github.vbauer.jconditions.util.ScriptUtils;
-
-import javax.script.ScriptContext;
-import javax.script.ScriptEngine;
-import javax.script.SimpleScriptContext;
-import java.util.concurrent.Callable;
 
 /**
  * @author Vladislav Bauer
@@ -29,9 +30,11 @@ public class IfScriptChecker implements ConditionChecker<IfScript> {
     public boolean isSatisfied(final CheckerContext<IfScript> context) throws Exception {
         final Object testInstance = context.getInstance();
         final IfScript annotation = context.getAnnotation();
-        final String[] scripts = annotation.value();
+
+		@SuppressWarnings("rawtypes")
+		final Class<? extends Callable> contextProviderClass = annotation.context();
         final String engineName = annotation.engine();
-        final Class<? extends Callable> contextProviderClass = annotation.context();
+        final String[] scripts = annotation.value();
 
         final ScriptEngine scriptEngine = ScriptUtils.findScriptEngine(engineName);
         if (scriptEngine != null) {
@@ -77,7 +80,8 @@ public class IfScriptChecker implements ConditionChecker<IfScript> {
         return context;
     }
 
-    private Object getExtraContext(
+    @SuppressWarnings("rawtypes")
+	private Object getExtraContext(
         final Object testInstance, final Class<? extends Callable> providerClass
     ) throws Exception {
         if (providerClass != null && providerClass != Callable.class) {

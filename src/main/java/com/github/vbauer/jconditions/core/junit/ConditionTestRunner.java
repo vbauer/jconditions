@@ -1,14 +1,15 @@
 package com.github.vbauer.jconditions.core.junit;
 
-import com.github.vbauer.jconditions.core.ConditionChecker;
-import com.github.vbauer.jconditions.core.ConditionCheckerEngine;
-import com.github.vbauer.jconditions.util.ReflexUtils;
 import org.junit.internal.runners.statements.InvokeMethod;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
+
+import com.github.vbauer.jconditions.core.ConditionChecker;
+import com.github.vbauer.jconditions.core.ConditionCheckerEngine;
+import com.github.vbauer.jconditions.util.ReflexUtils;
 
 /**
  * @author Vladislav Bauer
@@ -29,7 +30,7 @@ public class ConditionTestRunner extends BlockJUnit4ClassRunner {
             final InvokeMethod statement = (InvokeMethod) methodBlock(method);
             final Object test = ReflexUtils.getFieldValue(statement, "target");
 
-            final ConditionChecker checker =
+            final ConditionChecker<?> checker =
                 ConditionCheckerEngine.detectFailedChecker(test, method);
 
             if (checker != null) {

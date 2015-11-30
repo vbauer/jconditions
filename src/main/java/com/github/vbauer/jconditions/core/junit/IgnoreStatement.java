@@ -1,8 +1,9 @@
 package com.github.vbauer.jconditions.core.junit;
 
-import com.github.vbauer.jconditions.core.ConditionChecker;
 import org.junit.AssumptionViolatedException;
 import org.junit.runners.model.Statement;
+
+import com.github.vbauer.jconditions.core.ConditionChecker;
 
 /**
  * @author Vladislav Bauer
@@ -10,10 +11,10 @@ import org.junit.runners.model.Statement;
 
 public class IgnoreStatement extends Statement {
 
-    private final ConditionChecker condition;
+    private final ConditionChecker<?> condition;
 
 
-    public IgnoreStatement(final ConditionChecker condition) {
+    public IgnoreStatement(final ConditionChecker<?> condition) {
         this.condition = condition;
     }
 

@@ -11,11 +11,14 @@ import com.github.vbauer.jconditions.core.ConditionCheckerExecutor;
 
 public class RunIfChecker implements ConditionChecker<RunIf> {
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean isSatisfied(final CheckerContext<RunIf> context) throws Exception {
         final RunIf annotation = context.getAnnotation();
-        final Class<? extends ConditionChecker>[] checkerClasses = annotation.value();
+
+        @SuppressWarnings("rawtypes")
+		final Class<? extends ConditionChecker>[] checkerClasses = annotation.value();
+
+        //noinspection unchecked
         return ConditionCheckerExecutor.isSatisfied(context, checkerClasses);
     }
 

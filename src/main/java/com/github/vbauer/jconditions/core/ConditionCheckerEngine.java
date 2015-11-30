@@ -1,24 +1,25 @@
 package com.github.vbauer.jconditions.core;
 
-import com.github.vbauer.jconditions.util.ReflexUtils;
-import org.junit.runners.model.FrameworkMethod;
-
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.Collection;
+
+import org.junit.runners.model.FrameworkMethod;
+
+import com.github.vbauer.jconditions.util.ReflexUtils;
 
 /**
  * @author Vladislav Bauer
  */
 
 public final class ConditionCheckerEngine {
-    
+
     private ConditionCheckerEngine() {
         throw new UnsupportedOperationException();
     }
 
 
-    public static ConditionChecker detectFailedChecker(
+    public static ConditionChecker<?> detectFailedChecker(
         final Object instance, final FrameworkMethod method
     ) {
         final Collection<Annotation> annotations = findAllAnnotations(instance, method);
@@ -26,11 +27,11 @@ public final class ConditionCheckerEngine {
     }
 
 
-    private static ConditionChecker findCheckerByAnnotations(
+    private static ConditionChecker<?> findCheckerByAnnotations(
         final Object instance, final Annotation parent, final Collection<Annotation> annotations
     ) {
         for (final Annotation annotation : annotations) {
-            final ConditionChecker checker =
+            final ConditionChecker<?> checker =
                 getConditionChecker(instance, parent, annotation);
 
             if (checker != null) {
@@ -40,7 +41,7 @@ public final class ConditionCheckerEngine {
         return null;
     }
 
-    private static ConditionChecker getConditionChecker(
+    private static ConditionChecker<?> getConditionChecker(
         final Object instance, final Annotation parent, final Annotation annotation
     ) {
         if (!ReflexUtils.isInJavaLangAnnotationPackage(annotation)) {
@@ -48,7 +49,7 @@ public final class ConditionCheckerEngine {
 
             if (annotationType == Condition.class) {
                 final Condition condition = (Condition) annotation;
-                final ConditionChecker checker =
+                final ConditionChecker<?> checker =
                     findCheckerByCondition(instance, parent, condition);
                 if (checker != null) {
                     return checker;
@@ -58,7 +59,7 @@ public final class ConditionCheckerEngine {
             final Collection<Annotation> extra =
                 Arrays.asList(annotationType.getAnnotations());
 
-            final ConditionChecker checker =
+            final ConditionChecker<?> checker =
                 findCheckerByAnnotations(instance, annotation, extra);
 
             if (checker != null) {
@@ -68,13 +69,13 @@ public final class ConditionCheckerEngine {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-    private static ConditionChecker findCheckerByCondition(
-        final Object instance, final Annotation parent, final Condition condition
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    private static <T> ConditionChecker<T> findCheckerByCondition(
+        final T instance, final Annotation parent, final Condition condition
     ) {
         final Class<? extends ConditionChecker> checkerClass = condition.value();
-        final ConditionChecker checker = ReflexUtils.instantiate(instance, checkerClass);
-        final CheckerContext context = new CheckerContext(instance, parent);
+        final ConditionChecker<T> checker = ReflexUtils.instantiate(instance, checkerClass);
+		final CheckerContext<T> context = new CheckerContext(instance, parent);
 
         if (!ConditionCheckerExecutor.isSatisfied(context, checker)) {
             return checker;

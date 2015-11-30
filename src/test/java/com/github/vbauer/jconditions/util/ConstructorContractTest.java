@@ -1,11 +1,12 @@
 package com.github.vbauer.jconditions.util;
 
+import org.junit.Test;
+
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.core.ConditionCheckerEngine;
 import com.github.vbauer.jconditions.core.ConditionCheckerExecutor;
 import com.pushtorefresh.private_constructor_checker.PrivateConstructorChecker;
-import org.junit.Test;
 
 /**
  * @author Vladislav Bauer
@@ -42,7 +43,7 @@ public class ConstructorContractTest {
     }
 
 
-    private class NegativeChecker implements ConditionChecker {
+    private class NegativeChecker<T> implements ConditionChecker<T> {
         private final boolean value;
 
         private NegativeChecker(final boolean value) {
@@ -50,7 +51,7 @@ public class ConstructorContractTest {
         }
 
         @Override
-        public boolean isSatisfied(final CheckerContext context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
             return value;
         }
     }

@@ -25,6 +25,7 @@ public @interface Condition {
      * Conditional checker class that will be instantiated and run before test.
      * @return conditional checker class
      */
-    Class<? extends ConditionChecker> value();
+    @SuppressWarnings("rawtypes")
+	Class<? extends ConditionChecker> value();
 
 }

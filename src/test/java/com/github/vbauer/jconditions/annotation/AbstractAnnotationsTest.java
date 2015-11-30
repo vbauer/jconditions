@@ -1,5 +1,13 @@
 package com.github.vbauer.jconditions.annotation;
 
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.concurrent.Callable;
+
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.github.vbauer.jconditions.checker.IfJavaVersionChecker;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
@@ -8,19 +16,12 @@ import com.github.vbauer.jconditions.misc.AppleWorksFine;
 import com.github.vbauer.jconditions.misc.Never;
 import com.github.vbauer.jconditions.util.FSUtils;
 import com.github.vbauer.jconditions.util.PropUtils;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.concurrent.Callable;
 
 /**
  * @author Vladislav Bauer
  */
 
-@Ignore
+@IgnoreIf(Never.class)
 public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTest {
 
     public final boolean isSatisfiedInnerCheck = false;
@@ -271,7 +272,7 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
         Assert.assertEquals(0, process.waitFor());
     }
 
-    private void checkTempFile(String filePath) {
+    private void checkTempFile(final String filePath) {
         final String path = PropUtils.injectProperties("${java.io.tmpdir}/" + filePath);
         Assert.assertTrue(FSUtils.fileExists(path));
     }
@@ -280,9 +281,9 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
     /**
      * @author Vladislav Bauer
      */
-    private static final class ExceptionClass implements ConditionChecker {
+    private static final class ExceptionClass<T> implements ConditionChecker<T> {
         @Override
-        public boolean isSatisfied(final CheckerContext context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
             throw new RuntimeException();
         }
     }
@@ -290,9 +291,9 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
     /**
      * @author Vladislav Bauer
      */
-    private class InnerClass implements ConditionChecker {
+    private class InnerClass<T> implements ConditionChecker<T> {
         @Override
-        public boolean isSatisfied(final CheckerContext context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
             return isSatisfiedInnerCheck;
         }
     }
@@ -300,9 +301,9 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
     /**
      * @author Vladislav Bauer
      */
-    private static class StaticNestedClass implements ConditionChecker {
+    private static class StaticNestedClass<T> implements ConditionChecker<T> {
         @Override
-        public boolean isSatisfied(final CheckerContext context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
             return false;
         }
     }
