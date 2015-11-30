@@ -3,7 +3,11 @@ package com.github.vbauer.jconditions.annotation;
 import com.github.vbauer.jconditions.checker.ResourceIsAvailableChecker;
 import com.github.vbauer.jconditions.core.Condition;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Allows to minimize code which is necessary to download some document/file via HTTP/HTTPS.

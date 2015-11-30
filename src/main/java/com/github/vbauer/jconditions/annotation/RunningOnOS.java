@@ -3,7 +3,11 @@ package com.github.vbauer.jconditions.annotation;
 import com.github.vbauer.jconditions.checker.RunningOnOSChecker;
 import com.github.vbauer.jconditions.core.Condition;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Checks the current operation system and runs test method only when it is specified and `value` parameter.

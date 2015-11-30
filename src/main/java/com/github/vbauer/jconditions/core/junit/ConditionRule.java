@@ -1,11 +1,10 @@
 package com.github.vbauer.jconditions.core.junit;
 
+import com.github.vbauer.jconditions.core.ConditionChecker;
+import com.github.vbauer.jconditions.core.ConditionCheckerEngine;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
-
-import com.github.vbauer.jconditions.core.ConditionChecker;
-import com.github.vbauer.jconditions.core.ConditionCheckerEngine;
 
 /**
  * @author Vladislav Bauer

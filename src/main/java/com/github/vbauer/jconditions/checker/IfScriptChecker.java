@@ -1,17 +1,16 @@
 package com.github.vbauer.jconditions.checker;
 
-import java.util.concurrent.Callable;
-
-import javax.script.ScriptContext;
-import javax.script.ScriptEngine;
-import javax.script.SimpleScriptContext;
-
 import com.github.vbauer.jconditions.annotation.IfScript;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.util.PropUtils;
 import com.github.vbauer.jconditions.util.ReflexUtils;
 import com.github.vbauer.jconditions.util.ScriptUtils;
+
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.SimpleScriptContext;
+import java.util.concurrent.Callable;
 
 /**
  * @author Vladislav Bauer

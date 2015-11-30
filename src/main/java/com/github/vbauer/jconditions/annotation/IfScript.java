@@ -1,14 +1,14 @@
 package com.github.vbauer.jconditions.annotation;
 
+import com.github.vbauer.jconditions.checker.IfScriptChecker;
+import com.github.vbauer.jconditions.core.Condition;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.concurrent.Callable;
-
-import com.github.vbauer.jconditions.checker.IfScriptChecker;
-import com.github.vbauer.jconditions.core.Condition;
 
 /**
  * Allows to write custom conditional rules using JSR 223: Scripting for the JavaTM Platform.

@@ -1,8 +1,8 @@
 package com.github.vbauer.jconditions.checker;
 
 import com.github.vbauer.jconditions.annotation.HasClass;
-import com.github.vbauer.jconditions.core.ConditionChecker;
 import com.github.vbauer.jconditions.core.CheckerContext;
+import com.github.vbauer.jconditions.core.ConditionChecker;
 
 /**
  * @author Vladislav Bauer

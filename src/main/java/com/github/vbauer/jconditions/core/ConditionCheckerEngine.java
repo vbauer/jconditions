@@ -1,12 +1,11 @@
 package com.github.vbauer.jconditions.core;
 
+import com.github.vbauer.jconditions.util.ReflexUtils;
+import org.junit.runners.model.FrameworkMethod;
+
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.Collection;
-
-import org.junit.runners.model.FrameworkMethod;
-
-import com.github.vbauer.jconditions.util.ReflexUtils;
 
 /**
  * @author Vladislav Bauer

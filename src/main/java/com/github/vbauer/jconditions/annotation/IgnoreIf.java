@@ -1,14 +1,14 @@
 package com.github.vbauer.jconditions.annotation;
 
+import com.github.vbauer.jconditions.checker.IgnoreIfChecker;
+import com.github.vbauer.jconditions.core.Condition;
+import com.github.vbauer.jconditions.core.ConditionChecker;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import com.github.vbauer.jconditions.checker.IgnoreIfChecker;
-import com.github.vbauer.jconditions.core.Condition;
-import com.github.vbauer.jconditions.core.ConditionChecker;
 
 /**
  * Allows to skip some test method using specific {@link ConditionChecker} class.
