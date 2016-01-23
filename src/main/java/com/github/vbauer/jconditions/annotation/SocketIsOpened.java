@@ -21,12 +21,19 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface SocketIsOpened {
 
+    /**
+     * Default value for host.
+     */
     String DEFAULT_HOST = "0.0.0.0";
+
+    /**
+     * Default value for timeout.
+     */
     int DEFAULT_TIMEOUT = 10000;
 
 
     /**
-     * Host address.
+     * Host address. Default value: {@link #DEFAULT_HOST}.
      *
      * @return host
      */
@@ -40,7 +47,7 @@ public @interface SocketIsOpened {
     int port();
 
     /**
-     * Maximum time for connection to the socket.
+     * Maximum time for connection to the socket. Default value: {@link #DEFAULT_TIMEOUT}.
      *
      * @return timeout
      */
