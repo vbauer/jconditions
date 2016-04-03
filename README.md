@@ -80,7 +80,7 @@ you need to configure JitPack's Maven repository to fetch artifacts (dependencie
     <dependency>
         <groupId>com.github.vbauer</groupId>
         <artifactId>jconditions</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
     </dependency>
 </dependencies>
 ```
@@ -96,7 +96,7 @@ repositories {
 }
 
 dependencies {
-    testCompile 'com.github.vbauer:jconditions:1.2.0'
+    testCompile 'com.github.vbauer:jconditions:1.2.1'
 }
 ```
 
