@@ -20,6 +20,10 @@ public class ConditionTestRunner extends BlockJUnit4ClassRunner {
         super(clazz);
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
         final Description description = describeChild(method);

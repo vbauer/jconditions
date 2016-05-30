@@ -18,6 +18,9 @@ public class IgnoreStatement extends Statement {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void evaluate() {
         final String conditionClassName = getConditionName();

@@ -7,11 +7,15 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
 /**
+ * @see MethodRule
  * @author Vladislav Bauer
  */
 
 public class ConditionRule implements MethodRule {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Statement apply(
         final Statement base, final FrameworkMethod method, final Object target
