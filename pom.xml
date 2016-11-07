@@ -53,7 +53,7 @@
 
         <junit.version>4.12</junit.version>
 
-        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.6.0</maven.compiler.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
@@ -64,10 +64,10 @@
         <maven.site.plugin.version>3.5.1</maven.site.plugin.version>
 
         <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
-        <maven.pmd.plugin.version>3.6</maven.pmd.plugin.version>
+        <maven.pmd.plugin.version>3.7</maven.pmd.plugin.version>
         <maven.animal.sniffer.plugin.version>1.15</maven.animal.sniffer.plugin.version>
         <maven.jacoco.plugin.version>0.7.7.201606060606</maven.jacoco.plugin.version>
-        <maven.coveralls.plugin.version>4.2.0</maven.coveralls.plugin.version>
+        <maven.coveralls.plugin.version>4.3.0</maven.coveralls.plugin.version>
     </properties>
 
     <dependencies>
@@ -84,7 +84,7 @@
         <dependency>
             <groupId>io.javaslang</groupId>
             <artifactId>javaslang</artifactId>
-            <version>2.0.3</version>
+            <version>2.0.4</version>
             <scope>test</scope>
         </dependency>
 
