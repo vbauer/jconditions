@@ -11,7 +11,7 @@ import com.github.vbauer.jconditions.util.PropUtils;
 
 public class RunningOnOSChecker implements ConditionChecker<RunningOnOS> {
 
-    public static final String PROPERTY_OS_NAME = "os.name";
+    private static final String PROPERTY_OS_NAME = "os.name";
 
 
     /**
@@ -25,7 +25,7 @@ public class RunningOnOSChecker implements ConditionChecker<RunningOnOS> {
     }
 
 
-    public static String currentOS() {
+    private static String currentOS() {
         return PropUtils.getSystemProperty(PROPERTY_OS_NAME).toLowerCase();
     }
 

@@ -11,7 +11,7 @@ import com.github.vbauer.jconditions.util.PropUtils;
 
 public class IfJavaVersionChecker implements ConditionChecker<IfJavaVersion> {
 
-    public static final String PROPERTY_JAVA_VERSION = "java.version";
+    private static final String PROPERTY_JAVA_VERSION = "java.version";
 
 
     /**

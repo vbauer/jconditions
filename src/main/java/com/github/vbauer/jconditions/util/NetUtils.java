@@ -15,7 +15,7 @@ import java.net.URLConnection;
 
 public final class NetUtils {
 
-    public static final String HTTP_PREFIX = "http://";
+    private static final String HTTP_PREFIX = "http://";
 
 
     private NetUtils() {
@@ -35,9 +35,7 @@ public final class NetUtils {
         return address;
     }
 
-    public static File copyURLContentToFile(
-        final URLConnection connection, final String target
-    ) throws Exception {
+    public static File copyURLContentToFile(final URLConnection connection, final String target) throws Exception {
         InputStream input = null;
         OutputStream output = null;
 

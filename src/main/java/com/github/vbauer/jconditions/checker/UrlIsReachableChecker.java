@@ -24,7 +24,7 @@ public class UrlIsReachableChecker implements ConditionChecker<UrlIsReachable> {
     }
 
 
-    private boolean isReachable(final String[] urlAddresses, final int timeout) throws Exception {
+    private boolean isReachable(final String[] urlAddresses, final int timeout) {
         for (final String urlAddress : urlAddresses) {
             final String url = PropUtils.injectProperties(urlAddress);
             if (!isReachable(url, timeout)) {

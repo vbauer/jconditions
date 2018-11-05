@@ -1,13 +1,5 @@
 package com.github.vbauer.jconditions.annotation;
 
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.concurrent.Callable;
-
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.github.vbauer.jconditions.checker.IfJavaVersionChecker;
 import com.github.vbauer.jconditions.core.CheckerContext;
 import com.github.vbauer.jconditions.core.ConditionChecker;
@@ -16,6 +8,13 @@ import com.github.vbauer.jconditions.misc.AppleWorksFine;
 import com.github.vbauer.jconditions.misc.Never;
 import com.github.vbauer.jconditions.util.FSUtils;
 import com.github.vbauer.jconditions.util.PropUtils;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.concurrent.Callable;
 
 /**
  * @author Vladislav Bauer
@@ -24,7 +23,7 @@ import com.github.vbauer.jconditions.util.PropUtils;
 @Ignore
 public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTest {
 
-    public final boolean isSatisfiedInnerCheck = false;
+    private final boolean isSatisfiedInnerCheck = false;
 
 
     @Test
@@ -66,25 +65,25 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
 
     @Test
     @AppIsInstalled({ "fake-app-12345" })
-    public void testAppIsNotInstalled() throws Exception {
+    public void testAppIsNotInstalled() {
         Assert.fail();
     }
 
     @Test
     @ExistsOnFS("pom.xml")
-    public void testFileExists() throws Exception {
+    public void testFileExists() {
         Assert.assertTrue(FSUtils.fileExists("pom.xml"));
     }
 
     @Test
     @ExistsOnFS(value = "src", type = { ExistsOnFS.Type.DIRECTORY, ExistsOnFS.Type.SYMLINK })
-    public void testDirectoryExists() throws Exception {
+    public void testDirectoryExists() {
         Assert.assertTrue(FSUtils.directoryExists("src"));
     }
 
     @Test
     @ExistsOnFS("pom.xml2")
-    public void testFileNotExists() throws Exception {
+    public void testFileNotExists() {
         Assert.fail();
     }
 
@@ -102,7 +101,7 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
 
     @Test
     @UrlIsReachable("http://it-is-a-wrong-url-address.com")
-    public void testUrlIsNotReachable() throws Exception {
+    public void testUrlIsNotReachable() {
         Assert.fail();
     }
 
@@ -129,19 +128,19 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
 
     @Test
     @HasClass("org.wrong.package.WrongClass")
-    public void testHasClassNegative() throws Exception {
+    public void testHasClassNegative() {
         Assert.fail();
     }
 
     @Test
     @HasPackage("org.junit")
-    public void testHasPackage() throws Exception {
+    public void testHasPackage() {
         Assert.assertNotNull(Package.getPackage("org.junit"));
     }
 
     @Test
     @HasPackage("org.wrong.package")
-    public void testHasPackageNegative() throws Exception {
+    public void testHasPackageNegative() {
         Assert.fail();
     }
 
@@ -222,15 +221,16 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
     }
 
     @Test
-    @IfJavaVersion(IfJavaVersion.JAVA_7)
-    public void testIfJavaVersion7() {
-        Assert.assertTrue(IfJavaVersionChecker.javaVersion().contains("7"));
-    }
-
-    @Test
     @IfJavaVersion(IfJavaVersion.JAVA_8)
     public void testIfJavaVersion8() {
         Assert.assertTrue(IfJavaVersionChecker.javaVersion().contains("8"));
+        Assert.assertNotNull(javaslang.Tuple0.instance());
+    }
+
+    @Test
+    @IfJavaVersion(IfJavaVersion.JAVA_9)
+    public void testIfJavaVersion9() {
+        Assert.assertTrue(IfJavaVersionChecker.javaVersion().contains("9"));
         Assert.assertNotNull(javaslang.Tuple0.instance());
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
      */
     private static final class ExceptionClass<T> implements ConditionChecker<T> {
         @Override
-        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) {
             throw new RuntimeException();
         }
     }
@@ -293,7 +293,7 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
      */
     private class InnerClass<T> implements ConditionChecker<T> {
         @Override
-        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) {
             return isSatisfiedInnerCheck;
         }
     }
@@ -303,7 +303,7 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
      */
     private static class StaticNestedClass<T> implements ConditionChecker<T> {
         @Override
-        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) {
             return false;
         }
     }
@@ -313,7 +313,7 @@ public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTes
      */
     private static class ExtraContext implements Callable<Boolean> {
         @Override
-        public Boolean call() throws Exception {
+        public Boolean call() {
             return false;
         }
     }

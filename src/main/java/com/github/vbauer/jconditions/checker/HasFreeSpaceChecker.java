@@ -41,9 +41,8 @@ public class HasFreeSpaceChecker implements ConditionChecker<HasFreeSpace> {
             final long freeSpace = file.getFreeSpace();
             if (min != HasFreeSpace.UNDEFINED && freeSpace < min) {
                 return false;
-            } else if (max != HasFreeSpace.UNDEFINED && freeSpace > max) {
-                return false;
             }
+            return max == HasFreeSpace.UNDEFINED || freeSpace <= max;
         }
         return true;
     }

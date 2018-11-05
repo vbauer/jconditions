@@ -11,8 +11,8 @@ import java.io.OutputStream;
 
 public final class InOutUtils {
 
-    public static final int BUFFER_SIZE = 1024;
-    public static final int EOF = -1;
+    private static final int BUFFER_SIZE = 1024;
+    private static final int EOF = -1;
 
 
     private InOutUtils() {
@@ -29,9 +29,7 @@ public final class InOutUtils {
         }
     }
 
-    public static void copy(
-        final InputStream input, final OutputStream output
-    ) throws IOException {
+    public static void copy(final InputStream input, final OutputStream output) throws IOException {
         final byte[] bytes = new byte[BUFFER_SIZE];
         int read;
 

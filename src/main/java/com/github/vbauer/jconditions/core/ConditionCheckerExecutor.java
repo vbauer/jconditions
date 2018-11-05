@@ -13,6 +13,7 @@ public final class ConditionCheckerExecutor {
     }
 
 
+    @SafeVarargs
     @SuppressWarnings("rawtypes")
     public static boolean isSatisfied(
         final CheckerContext<?> context,

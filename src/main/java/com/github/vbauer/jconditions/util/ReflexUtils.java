@@ -16,7 +16,7 @@ import java.util.List;
 
 public final class ReflexUtils {
 
-    public static final String PACKAGE_JAVA_LANG_ANNOTATION = "java.lang.annotation";
+    private static final String PACKAGE_JAVA_LANG_ANNOTATION = "java.lang.annotation";
 
 
     private ReflexUtils() {
@@ -50,7 +50,7 @@ public final class ReflexUtils {
     }
 
     public static Collection<Annotation> findAllAnnotations(final Class<?> clazz) {
-        final List<Annotation> result = new ArrayList<Annotation>();
+        final List<Annotation> result = new ArrayList<>();
         Class<?> current = clazz;
 
         while (current != Object.class && current != null) {

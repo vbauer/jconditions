@@ -18,11 +18,11 @@ import java.util.concurrent.Callable;
 
 public class IfScriptChecker implements ConditionChecker<IfScript> {
 
-    public static final String CONTEXT_ENV = "env";
-    public static final String CONTEXT_PROPS = "props";
-    public static final String CONTEXT_TEST = "test";
-    public static final String CONTEXT_CONSOLE = "console";
-    public static final String CONTEXT_CONTEXT = "context";
+    private static final String CONTEXT_ENV = "env";
+    private static final String CONTEXT_PROPS = "props";
+    private static final String CONTEXT_TEST = "test";
+    private static final String CONTEXT_CONSOLE = "console";
+    private static final String CONTEXT_CONTEXT = "context";
 
 
     /**

@@ -21,8 +21,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 public @interface IfJavaVersion {
 
-    String JAVA_6 = "1.6";
-    String JAVA_7 = "1.7";
     String JAVA_8 = "1.8";
     String JAVA_9 = "1.9";
 

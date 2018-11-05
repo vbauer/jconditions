@@ -10,8 +10,8 @@ import java.util.Properties;
 
 public final class PropUtils {
 
-    public static final String VAR_PREFIX = "${";
-    public static final String VAR_POSTFIX = "}";
+    private static final String VAR_PREFIX = "${";
+    private static final String VAR_POSTFIX = "}";
 
 
     private PropUtils() {

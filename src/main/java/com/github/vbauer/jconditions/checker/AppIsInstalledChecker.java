@@ -22,7 +22,7 @@ public class AppIsInstalledChecker implements ConditionChecker<AppIsInstalled> {
     }
 
 
-    private boolean appsInstalled(final String... applications) throws Exception {
+    private boolean appsInstalled(final String... applications) {
         for (final String application : applications) {
             final String app = PropUtils.injectProperties(application);
             if (!isAppInstalled(app)) {
