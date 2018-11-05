@@ -25,14 +25,14 @@ public final class PropUtils {
     }
 
     public static Map<String, String> getSystemProperties() {
-        final Map<String, String> result = new HashMap<String, String>();
+        final Map<String, String> result = new HashMap<>();
         result.putAll(System.getenv());
         result.putAll(convertPropertiesToMap(System.getProperties()));
         return result;
     }
 
     public static Map<String, String> convertPropertiesToMap(final Properties properties) {
-        final Map<String, String> result = new HashMap<String, String>();
+        final Map<String, String> result = new HashMap<>();
         for (final String name : properties.stringPropertyNames()) {
             result.put(name, properties.getProperty(name));
         }

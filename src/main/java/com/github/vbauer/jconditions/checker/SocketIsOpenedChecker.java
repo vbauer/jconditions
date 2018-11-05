@@ -28,9 +28,7 @@ public class SocketIsOpenedChecker implements ConditionChecker<SocketIsOpened> {
     }
 
 
-    private boolean isSocketOpened(
-        final String host, final int port, final int timeout
-    ) throws Exception {
+    private boolean isSocketOpened(final String host, final int port, final int timeout) throws Exception {
         Socket socket = null;
         try {
             socket = new Socket();

@@ -20,9 +20,7 @@ public class ResourceIsAvailableChecker implements ConditionChecker<ResourceIsAv
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(
-        final CheckerContext<ResourceIsAvailable> context
-    ) throws Exception {
+    public boolean isSatisfied(final CheckerContext<ResourceIsAvailable> context) throws Exception {
         final ResourceIsAvailable annotation = context.getAnnotation();
         final String source = NetUtils.fixScheme(PropUtils.injectProperties(annotation.source()));
         final String target = PropUtils.injectProperties(annotation.target());

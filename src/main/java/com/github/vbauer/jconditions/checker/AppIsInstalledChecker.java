@@ -15,7 +15,7 @@ public class AppIsInstalledChecker implements ConditionChecker<AppIsInstalled> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<AppIsInstalled> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<AppIsInstalled> context) {
         final AppIsInstalled annotation = context.getAnnotation();
         final String[] applications = annotation.value();
         return appsInstalled(applications);

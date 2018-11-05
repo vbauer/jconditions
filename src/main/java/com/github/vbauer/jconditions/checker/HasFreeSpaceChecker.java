@@ -16,7 +16,7 @@ public class HasFreeSpaceChecker implements ConditionChecker<HasFreeSpace> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<HasFreeSpace> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<HasFreeSpace> context) {
         final HasFreeSpace annotation = context.getAnnotation();
         final String[] targets = annotation.value();
         final long min = annotation.min();

@@ -14,7 +14,7 @@ public class HasPackageChecker implements ConditionChecker<HasPackage> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<HasPackage> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<HasPackage> context) {
         final HasPackage annotation = context.getAnnotation();
         final String[] packageNames = annotation.value();
         return hasAllPackages(packageNames);

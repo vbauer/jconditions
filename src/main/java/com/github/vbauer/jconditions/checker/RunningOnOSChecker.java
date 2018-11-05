@@ -18,7 +18,7 @@ public class RunningOnOSChecker implements ConditionChecker<RunningOnOS> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<RunningOnOS> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<RunningOnOS> context) {
         final RunningOnOS annotation = context.getAnnotation();
         final String[] operationSystems = annotation.value();
         return PropUtils.hasAnyWithProperties(currentOS(), operationSystems);

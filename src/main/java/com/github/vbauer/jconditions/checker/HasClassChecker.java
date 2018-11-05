@@ -14,7 +14,7 @@ public class HasClassChecker implements ConditionChecker<HasClass> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<HasClass> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<HasClass> context) {
         final HasClass annotation = context.getAnnotation();
         final String[] classNames = annotation.value();
         return hasAllClasses(classNames);

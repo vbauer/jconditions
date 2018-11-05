@@ -15,7 +15,7 @@ public class RunIfChecker implements ConditionChecker<RunIf> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<RunIf> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<RunIf> context) {
         final RunIf annotation = context.getAnnotation();
 
         @SuppressWarnings("rawtypes")

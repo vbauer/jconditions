@@ -23,6 +23,7 @@ import java.util.concurrent.Callable;
 @Ignore
 public abstract class AbstractAnnotationsTest implements InterfaceAnnotationsTest {
 
+    @SuppressWarnings("all")
     private final boolean isSatisfiedInnerCheck = false;
 
 

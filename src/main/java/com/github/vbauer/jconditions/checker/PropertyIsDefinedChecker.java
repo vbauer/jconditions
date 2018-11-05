@@ -16,7 +16,7 @@ public class PropertyIsDefinedChecker implements ConditionChecker<PropertyIsDefi
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<PropertyIsDefined> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<PropertyIsDefined> context) {
         final PropertyIsDefined annotation = context.getAnnotation();
         final String[] keys = annotation.keys();
         final String[] values = annotation.values();

@@ -16,7 +16,7 @@ public class UrlIsReachableChecker implements ConditionChecker<UrlIsReachable> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<UrlIsReachable> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<UrlIsReachable> context) {
         final UrlIsReachable annotation = context.getAnnotation();
         final String[] urlAddresses = annotation.value();
         final int timeout = annotation.timeout();

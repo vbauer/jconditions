@@ -18,7 +18,7 @@ public class IfJavaVersionChecker implements ConditionChecker<IfJavaVersion> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<IfJavaVersion> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<IfJavaVersion> context) {
         final IfJavaVersion annotation = context.getAnnotation();
         final String[] versions = annotation.value();
         return PropUtils.hasAnyWithProperties(javaVersion(), versions);

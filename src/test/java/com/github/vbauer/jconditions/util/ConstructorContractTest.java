@@ -51,7 +51,7 @@ public class ConstructorContractTest {
         }
 
         @Override
-        public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
+        public boolean isSatisfied(final CheckerContext<T> context) {
             return value;
         }
     }

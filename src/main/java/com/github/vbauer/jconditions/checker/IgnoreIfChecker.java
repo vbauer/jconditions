@@ -15,7 +15,7 @@ public class IgnoreIfChecker implements ConditionChecker<IgnoreIf> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSatisfied(final CheckerContext<IgnoreIf> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<IgnoreIf> context) {
         final IgnoreIf annotation = context.getAnnotation();
 
         @SuppressWarnings("rawtypes")

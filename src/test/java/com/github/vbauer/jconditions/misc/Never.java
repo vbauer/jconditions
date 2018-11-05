@@ -9,7 +9,7 @@ import com.github.vbauer.jconditions.core.ConditionChecker;
 public class Never<T> implements ConditionChecker<T> {
 
     @Override
-    public boolean isSatisfied(final CheckerContext<T> context) throws Exception {
+    public boolean isSatisfied(final CheckerContext<T> context) {
         return false;
     }
 
